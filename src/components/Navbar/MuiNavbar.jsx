@@ -10,10 +10,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import Link from "@mui/icons-material/Link";
 import { Switch } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
@@ -62,6 +62,7 @@ const adminBizPages = [
 ];
 
 const MuiNavbar = () => {
+  const navigate = useNavigate();
   const isLoggedIn = useSelector(
     (bigPieBigState) => bigPieBigState.authSlice.isLoggedIn
   );
@@ -88,18 +89,18 @@ const MuiNavbar = () => {
     dispatch(authActions.logout());
   };
 
+  const logoClick = () => {
+    navigate(ROUTES.HOME);
+  }
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar>
-          <AdbIcon />
-          <Typography
-            variant="h6"
-            noWrap
-            sx={{ display: { xs: "none", md: "inline" } }}
-          >
-            LOGO
-          </Typography>
+          <Box onClick={logoClick}>
+            <CameraAltIcon />
+          </Box>
+          
           {/* main navbar */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
