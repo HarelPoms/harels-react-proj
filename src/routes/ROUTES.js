@@ -5,6 +5,7 @@ const ROUTES = {
   LOGIN: "/login",
   PROFILE: "/profile",
   LOGOUT: "/logout",
+  NEWCARD: "/new_card"
 };
 
 export default ROUTES;

@@ -13,6 +13,7 @@ import LogoutPage from "../pages/LogoutPage";
 import NestedRoutePage from "../pages/NestedRoutePage";
 import NestedPage1 from "../pages/NestedRoutePage/NestedPage1";
 import NestedPage2 from "../pages/NestedRoutePage/NestedPage2";
+import NewCardPage from "../pages/NewCardPage";
 
 //element={<ProtectedRoute element={<LogoutPage />} />}
 
@@ -27,6 +28,9 @@ const Router = () => {
         path={ROUTES.LOGOUT}
         element={<ProtectedRoute element={<LogoutPage />} />}
       />
+      <Route path="/new_card" element={
+      <SuperProtectedRoute isAdmin={false} isBiz={true} element={<NewCardPage />} />
+      } />
       <Route
         path="/edit/:id"
         element={

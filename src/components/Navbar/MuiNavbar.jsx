@@ -54,11 +54,8 @@ const authedPages = [
 ];
 
 //admin/biz pages
-const adminBizPages = [
-  {
-    label: "Create",
-    url: ROUTES.REGISTER,
-  },
+const bizPages = [
+  {label: "Create", url:ROUTES.NEWCARD},
 ];
 
 const MuiNavbar = () => {
@@ -119,6 +116,9 @@ const MuiNavbar = () => {
                   )
                 )
               : notAuthPages.map((page) => (
+                  <NavLinkComponent key={page.url} {...page} />
+                ))}
+                {bizPages.map((page) => (
                   <NavLinkComponent key={page.url} {...page} />
                 ))}
           </Box>
