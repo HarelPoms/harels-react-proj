@@ -6,8 +6,6 @@ import LoginPage from "../pages/LoginPage";
 import EditCardPage from "../pages/EditCardPage";
 import ReRenderPage from "../pages/ReRenderPage/ReRenderPage";
 import UseMemoPage from "../pages/ReRenderPage/UseMemoPage";
-import RP1 from "../pages/RP1";
-import RP2 from "../pages/RP2";
 import ProtectedRoute from "../components/ProtectedRoute";
 import ProfilePage from "../pages/ProfilePage";
 import SuperProtectedRoute from "../components/SuperProtectedRoute";
@@ -55,8 +53,6 @@ const Router = () => {
       />
       <Route path="/rrp" element={<ReRenderPage />} />
       <Route path="/usememo" element={<UseMemoPage />} />
-      <Route path="/rp1" element={<RP1 />} />
-      <Route path="/rp2" element={<RP2 />} />
       <Route path="/nr" element={<NestedRoutePage />}>
         <Route path="nestedpage1" element={<NestedPage1 />} />
         <Route path="nestedpage2" element={<NestedPage2 />} />
