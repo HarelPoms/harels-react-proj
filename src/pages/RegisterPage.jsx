@@ -7,7 +7,6 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import RefreshIcon from '@mui/icons-material/Refresh';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +16,8 @@ import validateRegisterSchema from "../validation/registerValidation";
 import { validateFieldFromSchema } from "../validation/registerValidation";
 import ROUTES from "../routes/ROUTES";
 import InputComponent from "../components/InputComponent";
+import CancelButtonComponent from "../components/CancelButtonComponent";
+import RefreshButtonComponent from "../components/RefreshButtonComponent";
 
 const RegisterPage = () => {
   const startingInputVal = {
@@ -70,9 +71,7 @@ const RegisterPage = () => {
     newInputState[ev.target.id] = ev.target.checked;
     setInputState(newInputState);
   };
-  const handleCancelClick = (ev) => {
-    navigate(ROUTES.HOME);
-  }
+
   const handleRefreshClick = (ev) => {
     setInputState(startingInputVal);
     setInputsErrorsState(startingInputErrVal);
@@ -117,24 +116,10 @@ const RegisterPage = () => {
               />
             </Grid>
             <Grid item xs={6}>
-              <Button
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                onClick={handleCancelClick}
-              >
-                Cancel
-              </Button>
+              <CancelButtonComponent />
             </Grid>
             <Grid item xs={6}>
-              <Button
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                onClick={handleRefreshClick}
-              >
-                <RefreshIcon />
-              </Button>
+              <RefreshButtonComponent handleRefreshClick={handleRefreshClick}/>
             </Grid>
           </Grid>
           <Button
