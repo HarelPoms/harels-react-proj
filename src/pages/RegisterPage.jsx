@@ -44,11 +44,7 @@ const RegisterPage = () => {
       if (joiResponse) {
         return;
       }
-      await axios.post("/users/register", {
-        name: inputState.firstName + " " + inputState.lastName,
-        email: inputState.email,
-        password: inputState.password,
-      });
+      await axios.post("/users/register", inputState);
       navigate(ROUTES.LOGIN);
     } catch (err) {
       console.log("error from axios", err.response.data);

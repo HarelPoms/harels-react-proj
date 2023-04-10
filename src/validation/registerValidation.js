@@ -12,8 +12,8 @@ const registerSchema = Joi.object({
     .required(),
   password: Joi.string()
     .pattern(new RegExp("^(?=.*[A-Z])(?=.*[a-z]).{0,}$"))
-    .min(2)
-    .max(10)
+    .min(6)
+    .max(1024)
     .required(),
   imageUrl: Joi.string().min(6).max(1024).allow(""),
   imageAlt: Joi.string().min(6).max(1024).allow(""),
