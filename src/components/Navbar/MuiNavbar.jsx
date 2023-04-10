@@ -53,7 +53,7 @@ const authedPages = [
   },
 ];
 
-//admin/biz pages
+//Biz pages
 const bizPages = [
   {label: "Create", url:ROUTES.NEWCARD},
 ];
@@ -61,7 +61,7 @@ const bizPages = [
 const MuiNavbar = () => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector(
-    (bigPieBigState) => bigPieBigState.authSlice.isLoggedIn
+    (bigPie) => bigPie.authSlice.isLoggedIn
   );
   const payload = useSelector((bigPie) => bigPie.authSlice.payload);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
