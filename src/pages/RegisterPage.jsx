@@ -19,7 +19,7 @@ import validateRegisterSchema from "../validation/registerValidation";
 import ROUTES from "../routes/ROUTES";
 
 const RegisterPage = () => {
-  const [inputState, setInputState] = useState({
+  const startingInputVal = {
     firstName: "",
     middleName: "",
     lastName: "",
@@ -35,8 +35,11 @@ const RegisterPage = () => {
     houseNumber: "",
     zipCode: "",
     isBiz: false
-  });
-  const [inputsErrorsState, setInputsErrorsState] = useState(null);
+  };
+
+  const startingInputErrVal = null;
+  const [inputState, setInputState] = useState(startingInputVal);
+  const [inputsErrorsState, setInputsErrorsState] = useState(startingInputErrVal);
   const navigate = useNavigate();
   const handleBtnClick = async (ev) => {
     try {
@@ -66,7 +69,8 @@ const RegisterPage = () => {
     navigate(ROUTES.HOME);
   }
   const handleRefreshClick = (ev) => {
-
+    setInputState(startingInputVal);
+    setInputsErrorsState(startingInputErrVal);
   }
   return (
     <Container component="main" maxWidth="xs">
@@ -377,6 +381,7 @@ const RegisterPage = () => {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                onClick={handleRefreshClick}
               >
                 <RefreshIcon />
               </Button>
