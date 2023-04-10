@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import validateRegisterSchema from "../validation/registerValidation";
+import { validateFieldFromSchema } from "../validation/registerValidation";
 import ROUTES from "../routes/ROUTES";
 
 const RegisterPage = () => {
@@ -37,13 +38,14 @@ const RegisterPage = () => {
     isBiz: false
   };
 
-  const startingInputErrVal = null;
+  const startingInputErrVal = {};
   const [inputState, setInputState] = useState(startingInputVal);
   const [inputsErrorsState, setInputsErrorsState] = useState(startingInputErrVal);
   const navigate = useNavigate();
   const handleBtnClick = async (ev) => {
     try {
       const joiResponse = validateRegisterSchema(inputState);
+      console.log(joiResponse);
       setInputsErrorsState(joiResponse);
       if (joiResponse) {
         return;
@@ -58,6 +60,16 @@ const RegisterPage = () => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState[ev.target.id] = ev.target.value;
     setInputState(newInputState);
+    let fieldValidationResult = validateFieldFromSchema(ev.target.value, ev.target.id);
+    //console.log("🚀 ~ file: RegisterPage.jsx:63 ~ handleInputChange ~ fieldValidationResult:", fieldValidationResult);
+    let newErrorState = JSON.parse(JSON.stringify(inputsErrorsState));
+    newErrorState[ev.target.id] = fieldValidationResult[ev.target.id];
+    // console.log("🚀 ~ file: RegisterPage.jsx:67 ~ handleInputChange ~ ev.target.id:", ev.target.id)
+    // console.log("🚀 ~ file: RegisterPage.jsx:67 ~ handleInputChange ~ fieldValidationResult[ev.target.id]:", fieldValidationResult[ev.target.id])
+
+    // console.log("🚀 ~ file: RegisterPage.jsx:67 ~ handleInputChange ~ newErrorState:", newErrorState)
+
+    setInputsErrorsState(newErrorState);
   };
 
   const handleCheckboxChange = (ev) => {

@@ -14,7 +14,9 @@ const validation = (schema, userInput) => {
     // no errors
     return null;
   }
+  
   const { details } = error; // const details = error.details
+  //console.log(details);
   for (let item of details) {
     if (!errorObjArr[item.context.key]) {
       /*
