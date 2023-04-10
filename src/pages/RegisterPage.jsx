@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
@@ -11,7 +10,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import RefreshIcon from '@mui/icons-material/Refresh';
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Alert from "@mui/material/Alert";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -62,18 +60,9 @@ const RegisterPage = () => {
     newInputState[ev.target.id] = ev.target.value;
     setInputState(newInputState);
     let fieldValidationResult = validateFieldFromSchema(ev.target.value, ev.target.id);
-    //console.log("🚀 ~ file: RegisterPage.jsx:63 ~ handleInputChange ~ fieldValidationResult:", fieldValidationResult);
     let newErrorState = JSON.parse(JSON.stringify(inputsErrorsState));
     newErrorState[ev.target.id] = fieldValidationResult[ev.target.id];
-    // console.log("🚀 ~ file: RegisterPage.jsx:67 ~ handleInputChange ~ ev.target.id:", ev.target.id)
-    // console.log("🚀 ~ file: RegisterPage.jsx:67 ~ handleInputChange ~ fieldValidationResult[ev.target.id]:", fieldValidationResult[ev.target.id])
-
-    // console.log("🚀 ~ file: RegisterPage.jsx:67 ~ handleInputChange ~ newErrorState:", newErrorState)
-
     setInputsErrorsState(newErrorState);
-
-    console.log(newInputState);
-    console.log(newErrorState);
   };
 
   const handleCheckboxChange = (ev) => {
