@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
@@ -128,10 +130,16 @@ const MuiNavbar = () => {
               p: 1,
             }}
           >
-            <Typography sx={{ display: { xs: "none", md: "inline" } }}>
-              {isDarkTheme ? "Dark" : "Light"} Mode
-            </Typography>
-            <Switch checked={isDarkTheme} onChange={changeTheme} />
+            <Box sx={{
+              display: 'flex',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+            }}>
+              {isDarkTheme ? <DarkModeIcon sx={{ display: { xs: "none", md: "inline" } }}/> :
+              <LightModeIcon sx={{ display: { xs: "none", md: "inline" } }} />}
+              <Switch checked={isDarkTheme} onChange={changeTheme} />
+            </Box>
+            
           </Box>
           {/* hamburger with menu */}
           <Box
