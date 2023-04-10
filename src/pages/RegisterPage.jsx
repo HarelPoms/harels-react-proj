@@ -18,6 +18,7 @@ import axios from "axios";
 import validateRegisterSchema from "../validation/registerValidation";
 import { validateFieldFromSchema } from "../validation/registerValidation";
 import ROUTES from "../routes/ROUTES";
+import InputComponent from "../components/InputComponent";
 
 const RegisterPage = () => {
   const startingInputVal = {
@@ -102,7 +103,9 @@ const RegisterPage = () => {
         </Typography>
         <Box component="div" noValidate sx={{ mt: 3 }}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <InputComponent id="firstName" label="First Name" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} inputVal={inputState.firstName} />
+
+            {/* <Grid item xs={12} sm={6}>
               <TextField
               autoComplete="given-name"
               name="firstName"
@@ -121,7 +124,8 @@ const RegisterPage = () => {
                 ))}
               </Alert>
               )}
-            </Grid>
+            </Grid> */}
+
             <Grid item xs={12} sm={6}>
               <TextField
               fullWidth
