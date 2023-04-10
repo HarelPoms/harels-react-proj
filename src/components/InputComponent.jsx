@@ -3,7 +3,7 @@ import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
 
 
-const InputComponent = ({id, label, inputState, inputsErrorsState, handleInputChange, inputVal}) => {
+const InputComponent = ({id, label, inputState, inputsErrorsState, handleInputChange}) => {
     const handleChange = (ev) =>{
         handleInputChange(ev);
     }
@@ -15,12 +15,12 @@ const InputComponent = ({id, label, inputState, inputsErrorsState, handleInputCh
         label={label}
         name={id}
         autoComplete={id}
-        value={inputState.firstName}
+        value={inputState[id]}
         onChange={handleChange}
         />
-        {inputsErrorsState && inputsErrorsState.firstName && (
+        {inputsErrorsState && inputsErrorsState[id] && (
         <Alert severity="warning">
-            {inputsErrorsState.firstName.map((item) => (
+            {inputsErrorsState[id].map((item) => (
             <div key={"firstName-errors" + item}>{item}</div>
             ))}
         </Alert>
