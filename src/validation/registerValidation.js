@@ -1,7 +1,6 @@
 import Joi from "joi";
 
 import validation from "./validation";
-import { JoinFull } from "@mui/icons-material";
 
 const registerSchema = Joi.object({
   firstName: Joi.string().min(2).max(100).required(),

@@ -25,13 +25,13 @@ const RegisterPage = () => {
     phone: "",
     email: "",
     password: "",
-    imgUrl: "",
-    imgAlt: "",
+    imageUrl: "",
+    imageAlt: "",
     state: "",
     country: "",
     city: "",
     street: "",
-    houseNum: "",
+    houseNumber: "",
     zipCode: "",
     isBiz: false
   });
@@ -105,7 +105,6 @@ const RegisterPage = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-              required
               fullWidth
               id="middleName"
               label="Middle Name"
@@ -204,37 +203,35 @@ const RegisterPage = () => {
 
             <Grid item xs={12} sm={6}>
               <TextField
-              required
               fullWidth
-              id="imgUrl"
+              id="imageUrl"
               label="Image Url"
               name="url"
               autoComplete="url"
-              value={inputState.url}
+              value={inputState.imageUrl}
               onChange={handleInputChange}
               />
-              {inputsErrorsState && inputsErrorsState.url && (
+              {inputsErrorsState && inputsErrorsState.imageUrl && (
               <Alert severity="warning">
-                {inputsErrorsState.url.map((item) => (
-                <div key={"url-errors" + item}>{item}</div>
+                {inputsErrorsState.imageUrl.map((item) => (
+                <div key={"imageUrl-errors" + item}>{item}</div>
                 ))}
               </Alert>
               )}
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-              required
               fullWidth
-              id="imgAlt"
+              id="imageAlt"
               label="Image Alt"
               name="alt"
               autoComplete="alt"
-              value={inputState.alt}
+              value={inputState.imageAlt}
               onChange={handleInputChange}
               />
-              {inputsErrorsState && inputsErrorsState.alt && (
+              {inputsErrorsState && inputsErrorsState.imageAlt && (
               <Alert severity="warning">
-                {inputsErrorsState.alt.map((item) => (
+                {inputsErrorsState.imageAlt.map((item) => (
                 <div key={"alt-errors" + item}>{item}</div>
                 ))}
               </Alert>
@@ -243,7 +240,6 @@ const RegisterPage = () => {
 
             <Grid item xs={12} sm={6}>
               <TextField
-              required
               fullWidth
               id="state"
               label="State"
@@ -323,24 +319,23 @@ const RegisterPage = () => {
               <TextField
               required
               fullWidth
-              id="houseNum"
+              id="houseNumber"
               label="House Number"
-              name="houseNum"
-              autoComplete="houseNum"
-              value={inputState.houseNum}
+              name="houseNumber"
+              autoComplete="houseNumber"
+              value={inputState.houseNumber}
               onChange={handleInputChange}
               />
-              {inputsErrorsState && inputsErrorsState.houseNum && (
+              {inputsErrorsState && inputsErrorsState.houseNumber && (
               <Alert severity="warning">
-                {inputsErrorsState.houseNum.map((item) => (
-                <div key={"houseNum-errors" + item}>{item}</div>
+                {inputsErrorsState.houseNumber.map((item) => (
+                <div key={"houseNumber-errors" + item}>{item}</div>
                 ))}
               </Alert>
               )}
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-              required
               fullWidth
               id="zipCode"
               label="Zip Code"
