@@ -1,9 +1,9 @@
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Alert from "@mui/material/Alert";
+import PropTypes from "prop-types";
 
-
-const InputComponent = ({id, label, inputState, inputsErrorsState, handleInputChange}) => {
+const InputComponent = ({id, label, inputState, inputsErrorsState, handleInputChange,isRequired, inputType}) => {
     const handleChange = (ev) =>{
         handleInputChange(ev);
     }
@@ -13,7 +13,9 @@ const InputComponent = ({id, label, inputState, inputsErrorsState, handleInputCh
         fullWidth
         id={id}
         label={label}
+        type={inputType}
         name={id}
+        required={isRequired}
         autoComplete={id}
         value={inputState[id]}
         onChange={handleChange}
@@ -27,5 +29,21 @@ const InputComponent = ({id, label, inputState, inputsErrorsState, handleInputCh
         )}
     </Grid>);
 }
+
+InputComponent.propTypes = {
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    inputState: PropTypes.object.isRequired,
+    inputsErrorsState: PropTypes.object.isRequired,
+    handleInputChange: PropTypes.func.isRequired,
+    isRequired: PropTypes.bool.isRequired,
+    inputType: PropTypes.string.isRequired
+};
+
+InputComponent.defaultProps = {
+    isRequired: false,
+    inputType: "text"
+};
+
 
 export default InputComponent;

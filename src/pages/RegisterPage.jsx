@@ -71,6 +71,9 @@ const RegisterPage = () => {
     // console.log("🚀 ~ file: RegisterPage.jsx:67 ~ handleInputChange ~ newErrorState:", newErrorState)
 
     setInputsErrorsState(newErrorState);
+
+    console.log(newInputState);
+    console.log(newErrorState);
   };
 
   const handleCheckboxChange = (ev) => {
@@ -103,278 +106,20 @@ const RegisterPage = () => {
         </Typography>
         <Box component="div" noValidate sx={{ mt: 3 }}>
           <Grid container spacing={2}>
-            <InputComponent id="firstName" label="First Name" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
-
-            {/* <Grid item xs={12} sm={6}>
-              <TextField
-              autoComplete="given-name"
-              name="firstName"
-              required
-              fullWidth
-              id="firstName"
-              label="First Name"
-              autoFocus
-              value={inputState.firstName}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.firstName && (
-              <Alert severity="warning">
-                {inputsErrorsState.firstName.map((item) => (
-                <div key={"firstName-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid> */}
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-              fullWidth
-              id="middleName"
-              label="Middle Name"
-              name="middleName"
-              autoComplete="middle-name"
-              value={inputState.middleName}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.middleName && (
-              <Alert severity="warning">
-                {inputsErrorsState.middleName.map((item) => (
-                <div key={"middleName-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-              required
-              fullWidth
-              id="lastName"
-              label="Last Name"
-              name="lastName"
-              autoComplete="family-name"
-              value={inputState.lastName}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.lastName && (
-              <Alert severity="warning">
-                {inputsErrorsState.lastName.map((item) => (
-                <div key={"lastName-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-              required
-              fullWidth
-              id="phone"
-              label="Phone"
-              name="phone"
-              autoComplete="phone"
-              value={inputState.phone}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.phone && (
-              <Alert severity="warning">
-                {inputsErrorsState.phone.map((item) => (
-                <div key={"phone-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              autoComplete="email"
-              value={inputState.email}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.email && (
-              <Alert severity="warning">
-                {inputsErrorsState.email.map((item) => (
-                <div key={"email-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-              required
-              fullWidth
-              id="password"
-              label="Password"
-              type="password"
-              name="password"
-              autoComplete="password"
-              value={inputState.password}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.password && (
-              <Alert severity="warning">
-                {inputsErrorsState.password.map((item) => (
-                <div key={"password-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-              fullWidth
-              id="imageUrl"
-              label="Image Url"
-              name="url"
-              autoComplete="url"
-              value={inputState.imageUrl}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.imageUrl && (
-              <Alert severity="warning">
-                {inputsErrorsState.imageUrl.map((item) => (
-                <div key={"imageUrl-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-              fullWidth
-              id="imageAlt"
-              label="Image Alt"
-              name="alt"
-              autoComplete="alt"
-              value={inputState.imageAlt}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.imageAlt && (
-              <Alert severity="warning">
-                {inputsErrorsState.imageAlt.map((item) => (
-                <div key={"alt-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-              fullWidth
-              id="state"
-              label="State"
-              name="state"
-              autoComplete="state"
-              value={inputState.state}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.state && (
-              <Alert severity="warning">
-                {inputsErrorsState.state.map((item) => (
-                <div key={"state-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-              required
-              fullWidth
-              id="country"
-              label="Country"
-              name="country"
-              autoComplete="country"
-              value={inputState.country}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.country && (
-              <Alert severity="warning">
-                {inputsErrorsState.country.map((item) => (
-                <div key={"country-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-              required
-              fullWidth
-              id="city"
-              label="City"
-              name="city"
-              autoComplete="city"
-              value={inputState.city}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.city && (
-              <Alert severity="warning">
-                {inputsErrorsState.city.map((item) => (
-                <div key={"city-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-              required
-              fullWidth
-              id="street"
-              label="Street"
-              name="street"
-              autoComplete="street"
-              value={inputState.street}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.street && (
-              <Alert severity="warning">
-                {inputsErrorsState.street.map((item) => (
-                <div key={"street-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-
-            <Grid item xs={12} sm={6}>
-              <TextField
-              required
-              fullWidth
-              id="houseNumber"
-              label="House Number"
-              name="houseNumber"
-              autoComplete="houseNumber"
-              value={inputState.houseNumber}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.houseNumber && (
-              <Alert severity="warning">
-                {inputsErrorsState.houseNumber.map((item) => (
-                <div key={"houseNumber-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-              fullWidth
-              id="zipCode"
-              label="Zip Code"
-              name="zip"
-              autoComplete="zip"
-              value={inputState.zip}
-              onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.zip && (
-              <Alert severity="warning">
-                {inputsErrorsState.zip.map((item) => (
-                <div key={"zip-errors" + item}>{item}</div>
-                ))}
-              </Alert>
-              )}
-            </Grid>
+            <InputComponent id="firstName" label="First Name" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+            <InputComponent id="middleName" label="Middle Name" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
+            <InputComponent id="lastName" label="Last Name" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+            <InputComponent id="phone" label="Phone" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+            <InputComponent id="email" label="Email" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+            <InputComponent id="password" label="Password" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} inputType="password" />
+            <InputComponent id="imageUrl" label="Image Url" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
+            <InputComponent id="imageAlt" label="Image Alt" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
+            <InputComponent id="state" label="State" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
+            <InputComponent id="country" label="Country" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+            <InputComponent id="city" label="City" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+            <InputComponent id="street" label="Street" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+            <InputComponent id="houseNumber" label="House Number" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+            <InputComponent id="zipCode" label="Zip Code" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
 
             <Grid item xs={12}>
               <FormControlLabel
