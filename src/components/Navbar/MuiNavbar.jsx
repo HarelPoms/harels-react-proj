@@ -63,6 +63,7 @@ const MuiNavbar = () => {
   const isLoggedIn = useSelector(
     (bigPieBigState) => bigPieBigState.authSlice.isLoggedIn
   );
+  const payload = useSelector((bigPie) => bigPie.authSlice.payload);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const dispatch = useDispatch();
   const isDarkTheme = useSelector(
@@ -118,9 +119,9 @@ const MuiNavbar = () => {
               : notAuthPages.map((page) => (
                   <NavLinkComponent key={page.url} {...page} />
                 ))}
-                {bizPages.map((page) => (
+                {payload && payload.biz ? bizPages.map((page) => (
                   <NavLinkComponent key={page.url} {...page} />
-                ))}
+                )) : ""}
           </Box>
           <SearchPartial />
           <Box
