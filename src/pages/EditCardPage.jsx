@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import Alert from "@mui/material/Alert";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -23,9 +21,11 @@ import CancelButtonComponent from "../components/CancelButtonComponent";
 import RefreshButtonComponent from "../components/RefreshButtonComponent";
 
 const EditCardPage = () => {
+  const startingInputVal = null;
+  const startingInputErrVal = {};
   const { id } = useParams();
-  const [inputState, setInputState] = useState(null);
-  const [inputsErrorsState, setInputsErrorsState] = useState({});
+  const [inputState, setInputState] = useState(startingInputVal);
+  const [inputsErrorsState, setInputsErrorsState] = useState(startingInputErrVal);
   const navigate = useNavigate();
   useEffect(() => {
     (async () => {
@@ -40,6 +40,16 @@ const EditCardPage = () => {
         let newInputState = {
           ...data,
         };
+        if (data.image && data.image.url) {
+          newInputState.url = data.image.url;
+        } else {
+          newInputState.url = "";
+        }
+        if (data.image && data.image.alt) {
+          newInputState.alt = data.image.alt;
+        } else {
+          newInputState.alt = "";
+        }
         delete newInputState.image;
         delete newInputState.likes;
         delete newInputState._id;
@@ -68,14 +78,18 @@ const EditCardPage = () => {
     }
   };
 
-  const handleCancelBtnClick = (ev) => {
-    //move to homepage
-    navigate(ROUTES.HOME);
-  };
+  const handleRefreshClick = (ev) => {
+    setInputState(startingInputVal);
+    setInputsErrorsState(startingInputErrVal);
+  }
   const handleInputChange = (ev) => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState[ev.target.id] = ev.target.value;
     setInputState(newInputState);
+    let fieldValidationResult = validateEditFieldFromSchema(ev.target.value, ev.target.id);
+    let newErrorState = JSON.parse(JSON.stringify(inputsErrorsState));
+    newErrorState[ev.target.id] = fieldValidationResult[ev.target.id];
+    setInputsErrorsState(newErrorState);
   };
 
   if (!inputState) {
@@ -111,139 +125,34 @@ const EditCardPage = () => {
         />
         <Box component="div" noValidate sx={{ mt: 3 }}>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="url"
-                label="Url"
-                name="url"
-                autoComplete="url"
-                value={inputState.url ? inputState.url : ""}
-                onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.url && (
-                <Alert severity="warning">
-                  {inputsErrorsState.url.map((item) => (
-                    <div key={"url-errors" + item}>{item}</div>
-                  ))}
-                </Alert>
-              )}
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="title"
-                label="Title"
-                name="title"
-                autoComplete="title"
-                value={inputState.title}
-                onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.title && (
-                <Alert severity="warning">
-                  {inputsErrorsState.title.map((item) => (
-                    <div key={"title-errors" + item}>{item}</div>
-                  ))}
-                </Alert>
-              )}
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="subTitle"
-                label="Sub title"
-                type="text"
-                id="subTitle"
-                autoComplete="subTitle"
-                value={inputState.subTitle}
-                onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.subTitle && (
-                <Alert severity="warning">
-                  {inputsErrorsState.subTitle.map((item) => (
-                    <div key={"subTitle-errors" + item}>{item}</div>
-                  ))}
-                </Alert>
-              )}
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="description"
-                label="Description"
-                id="description"
-                autoComplete="description"
-                value={inputState.description}
-                onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.description && (
-                <Alert severity="warning">
-                  {inputsErrorsState.description.map((item) => (
-                    <div key={"description-errors" + item}>{item}</div>
-                  ))}
-                </Alert>
-              )}
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="address"
-                label="Address"
-                id="address"
-                autoComplete="address"
-                value={inputState.address}
-                onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.description && (
-                <Alert severity="warning">
-                  {inputsErrorsState.description.map((item) => (
-                    <div key={"description-errors" + item}>{item}</div>
-                  ))}
-                </Alert>
-              )}
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="phone"
-                label="Phone"
-                id="phone"
-                autoComplete="phone"
-                value={inputState.phone}
-                onChange={handleInputChange}
-              />
-              {inputsErrorsState && inputsErrorsState.description && (
-                <Alert severity="warning">
-                  {inputsErrorsState.description.map((item) => (
-                    <div key={"description-errors" + item}>{item}</div>
-                  ))}
-                </Alert>
-              )}
+            <InputComponent id="title" label="Title" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+                <InputComponent id="subTitle" label="Subtitle" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+                <InputComponent id="description" label="Description" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+                <InputComponent id="phone" label="Phone" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+                <InputComponent id="email" label="Email" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+                <InputComponent id="web" label="Web" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
+                <InputComponent id="url" label="Image URL" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
+                <InputComponent id="alt" label="Image ALT" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
+                <InputComponent id="state" label="State" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
+                <InputComponent id="country" label="Country" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+                <InputComponent id="city" label="City" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+                <InputComponent id="street" label="Street" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+                <InputComponent id="houseNumber" label="House Number" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
+                <InputComponent id="zipCode" label="Zip Code" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
+            <Grid item xs={6}>
+                <CancelButtonComponent />
             </Grid>
             <Grid item xs={6}>
-              <Button
+                <RefreshButtonComponent handleRefreshClick={handleRefreshClick}/>
+            </Grid>
+            <Grid item xs={12}>
+                <Button
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                onClick={handleSaveBtnClick}
-              >
-                Save
-              </Button>
-            </Grid>
-            <Grid item xs={6}>
-              <Button
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                onClick={handleCancelBtnClick}
-              >
-                Cancel
-              </Button>
+                onClick={handleSaveBtnClick}>
+                    Save
+                </Button>
             </Grid>
           </Grid>
         </Box>
