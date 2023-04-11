@@ -9,7 +9,8 @@ const getKeyByValue = (object, value) => {
 const generateMessages = ( msgSubject, msgLimitVarArr, msgType, msgIncludeIndicatorArr) => {
     const stringMsgTypeArr = {"string.min": 0, "string.max": 1, "string.empty": 2, "string.pattern.base": 3};
     const stringMsgs = ["XX should be at least YY ZZ long", "XX should be at most YY ZZ long", "XX cannot be empty", "XX should meet rules"]
-    const numberMsgTypeArr = {"number.min": 0, "number.max": 1};
+    const numberMsgs = ["XX should be at least YY ZZ long", "XX should be at most YY ZZ long","XX Must be a Number"];
+    const numberMsgTypeArr = {"number.min": 0, "number.max": 1, "number.base" : 2};
     const typeUnits = ["characters", "digits"];
     const msgTypes = {"string" : 0, "number": 1};
     let msgObj = {};
@@ -27,11 +28,17 @@ const generateMessages = ( msgSubject, msgLimitVarArr, msgType, msgIncludeIndica
             validationMsg = validationMsg.replace("XX", msgSubject);
             msgObj[getKeyByValue(stringMsgTypeArr, msgIncludeIdx)] = validationMsg;
         }
-        if(msgType === msgTypes.number && msgIncludeIndicatorArr[msgIncludeIdx]){
-            let validationMsg = stringMsgs[msgIncludeIdx];
+        if(msgType === msgTypes.number && msgIncludeIndicatorArr[msgIncludeIdx] && (msgIncludeIdx === numberMsgTypeArr["number.min"] || msgIncludeIdx === numberMsgTypeArr["number.max"])){
+            let validationMsg = numberMsgs[msgIncludeIdx];
             validationMsg = validationMsg.replace("XX", msgSubject);
             validationMsg = validationMsg.replace("YY", msgLimitVarArr[msgIncludeIdx]);
             validationMsg = validationMsg.replace("ZZ", typeUnits[msgTypes.number]);
+            msgObj[getKeyByValue(numberMsgTypeArr, msgIncludeIdx)] = validationMsg;
+        }
+
+        if(msgType === msgTypes.number && msgIncludeIndicatorArr[msgIncludeIdx] && !(msgIncludeIdx === numberMsgTypeArr["number.min"] || msgIncludeIdx === numberMsgTypeArr["number.max"])){
+            let validationMsg = numberMsgs[msgIncludeIdx];
+            validationMsg = validationMsg.replace("XX", msgSubject);
             msgObj[getKeyByValue(numberMsgTypeArr, msgIncludeIdx)] = validationMsg;
         }
     }
