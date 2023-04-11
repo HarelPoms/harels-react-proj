@@ -2,6 +2,8 @@ import Joi from "joi";
 
 import validation from "./validation";
 
+import generateMessages from "./msgGenerationUtil";
+
 const registerSchema = Joi.object({
   firstName: Joi.string().min(2).max(100).required().messages({
     "string.min": "First Name should be at least 2 characters long",
@@ -36,10 +38,8 @@ const registerSchema = Joi.object({
     "string.empty": "Password cannot be empty",
     "string.pattern.base": "Password should meet rules",
   }),
-  imageUrl: Joi.string().min(6).max(1024).allow("").messages({
-    "string.min": "Image URL should be at least 6 characters long",
-    "string.max": "Image URL should be at most 1024 characters long"
-  }),
+  imageUrl: Joi.string().min(6).max(1024).allow("").messages(generateMessages("Image URL", [6,1024], 0,
+  [1,1])),
   imageAlt: Joi.string().min(6).max(1024).allow("").messages({
     "string.min": "Image ALT should be at least 6 characters long",
     "string.max": "Image ALT should be at most 1024 characters long"
@@ -74,6 +74,11 @@ const registerSchema = Joi.object({
   }),
   biz: Joi.boolean(),
 });
+
+// //{
+//     "string.min": "Image URL should be at least 6 characters long",
+//     "string.max": "Image URL should be at most 1024 characters long"
+//   }
 
 const validateRegisterSchema = (userInput) =>
   validation(registerSchema, userInput);
