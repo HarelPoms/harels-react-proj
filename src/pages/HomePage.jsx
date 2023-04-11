@@ -1,10 +1,9 @@
 import { Box, CircularProgress, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import CardComponent from "../components/CardComponent";
-import ButtonComponent from "../components/ButtonComponent";
 import { toast } from "react-toastify";
 import useQueryParams from "../hooks/useQueryParams";
 import { useSelector } from "react-redux";
@@ -47,7 +46,8 @@ const HomePage = () => {
         when component loaded and states not loaded
       */
       setOriginalCardsArr(data);
-      setCardsArr(data.filter((card) => card.title.startsWith(filter)));
+      console.log(data);
+      setCardsArr(data.filter((card) => card.title.startsWith(filter) || card.bizNumber.startsWith(filter)));
       return;
     }
     if (originalCardsArr) {
@@ -56,7 +56,7 @@ const HomePage = () => {
       */
       let newOriginalCardsArr = JSON.parse(JSON.stringify(originalCardsArr));
       setCardsArr(
-        newOriginalCardsArr.filter((card) => card.title.startsWith(filter))
+        newOriginalCardsArr.filter((card) => card.title.startsWith(filter) || card.bizNumber.startsWith(filter))
       );
     }
   };
@@ -64,14 +64,15 @@ const HomePage = () => {
     filterFunc();
   }, [qparams.filter]);
   const handleDeleteFromInitialCardsArr = async (id) => {
-    // let newCardsArr = JSON.parse(JSON.stringify(cardsArr));
-    // newCardsArr = newCardsArr.filter((item) => item.id != id);
-    // setCardsArr(newCardsArr);
     try {
-      await axios.delete("/cards/" + id); // /cards/:id
-      setCardsArr((newCardsArr) =>
-        newCardsArr.filter((item) => item._id != id)
-      );
+      let response = await axios.delete("/cards/" + id);
+      if(response.status === 200){
+          setCardsArr((newCardsArr) => newCardsArr.filter((item) => item._id != id));
+          toast.success("Card deletion successful");
+      }
+      else{
+          toast.error("Card Deletion Failed");
+      }
     } catch (err) {
       console.log("error when deleting", err.response.data);
     }
@@ -105,30 +106,5 @@ const HomePage = () => {
     </Box>
   );
 };
-
-/*
-  <CardComponent
-              id={item.id}
-              title={item.title}
-              price={item.price}
-              ----
-              onDelete={handleDeleteFromInitialCardsArr}
-              onEdit={handleEditFromInitialCardsArr}
-            />
-  component 1:
-    <CardComponent
-              id={1}
-              ----
-              onDelete={handleDeleteFromInitialCardsArr}
-              onEdit={handleEditFromInitialCardsArr}
-            />
-  component 2:
-    <CardComponent
-              id={2}
-              ----
-              onDelete={handleDeleteFromInitialCardsArr}
-              onEdit={handleEditFromInitialCardsArr}
-            />
-*/
 
 export default HomePage;
