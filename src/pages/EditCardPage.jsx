@@ -21,31 +21,9 @@ import { toast } from "react-toastify";
 
 const EditCardPage = () => {
   const { id } = useParams();
-  /*
-    router: /edit/:id
-    url: /edit/magafaiim
-    params = {
-      id: "magafaiim"
-    }
-    const params = useParams()
-    const id = params.id
-  */
   const [inputState, setInputState] = useState(null);
-  // const [inputState, setInputState] = useState({
-  //   img: "",
-  //   title: "",
-  //   price: "",
-  //   description: "",
-  // });
   const [inputsErrorsState, setInputsErrorsState] = useState({});
   const navigate = useNavigate();
-  /*
-    const params = useParams();
-    params = {
-      id:1
-    }
-    const id = params.id
-  */
   useEffect(() => {
     (async () => {
       try {
@@ -59,16 +37,17 @@ const EditCardPage = () => {
         let newInputState = {
           ...data,
         };
-        if (data.image && data.image.url) {
-          newInputState.url = data.image.url;
-        } else {
-          newInputState.url = "";
-        }
-        if (data.image && data.image.alt) {
-          newInputState.alt = data.image.alt;
-        } else {
-          newInputState.alt = "";
-        }
+        //should be unneeded now
+        // if (data.image && data.image.url) {
+        //   newInputState.url = data.image.url;
+        // } else {
+        //   newInputState.url = "";
+        // }
+        // if (data.image && data.image.alt) {
+        //   newInputState.alt = data.image.alt;
+        // } else {
+        //   newInputState.alt = "";
+        // }
         delete newInputState.image;
         delete newInputState.likes;
         delete newInputState._id;

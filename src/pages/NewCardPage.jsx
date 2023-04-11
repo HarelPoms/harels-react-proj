@@ -18,7 +18,7 @@ import ROUTES from "../routes/ROUTES";
 import validateEditSchema from "../validation/editValidation";
 
 const NewCardPage = () => {
-    const [inputState, setInputState] = useState({title: "", subTitle: "", description: "", address: "", phone: "", url: "", alt: "" });
+    const [inputState, setInputState] = useState({title: "", subTitle: "", description: "", state:"", country:"", city: "", street: "", houseNumber: "", zipCode: "", phone: "", email:"", web: "", url: "", alt: "" });
     const [inputsErrorsState, setInputsErrorsState] = useState(null);
     const navigate = useNavigate();
 
@@ -74,8 +74,8 @@ const NewCardPage = () => {
             <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
                 <AddCardIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">
-                New card
+            <Typography component="h1" variant="h4">
+                Create Card
             </Typography>
             <Box
             component="img"

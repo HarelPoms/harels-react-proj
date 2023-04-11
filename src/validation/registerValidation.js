@@ -69,8 +69,8 @@ const registerSchema = Joi.object({
     "string.empty": "House Number cannot be empty"
   }),
   zipCode: Joi.number().min(1).max(256).allow("").messages({
-    "number.min": "Zip Code should be at least 1 characters long",
-    "number.max": "Zip Code be at most 256 characters long"
+    "number.min": "Zip Code should be at least 1 digit long",
+    "number.max": "Zip Code be at most 256 digits long"
   }),
   biz: Joi.boolean(),
 });
