@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { Switch } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
+import Avatar from '@mui/material/Avatar';
 
 import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
@@ -138,6 +139,7 @@ const MuiNavbar = () => {
               {isDarkTheme ? <DarkModeIcon sx={{ display: { xs: "none", md: "inline" } }}/> :
               <LightModeIcon sx={{ display: { xs: "none", md: "inline" } }} />}
               <Switch checked={isDarkTheme} onChange={changeTheme} />
+              {isLoggedIn ? <Avatar alt="profile pic" src="" /> : ""}
             </Box>
             
           </Box>
