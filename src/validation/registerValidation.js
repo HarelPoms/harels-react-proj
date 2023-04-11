@@ -13,14 +13,12 @@ const registerSchema = Joi.object({
   [1,1,1])),
   phone: Joi.string().min(7).max(12).required().messages(generateMessages("Phone", [7,12], 0,
   [1,1,1])),
-  email: Joi.string()
-    .email({ tlds: { allow: false } })
-    .required(),
+  email: Joi.string().email({ tlds: { allow: false } }).required(),
   password: Joi.string()
-    .pattern(new RegExp("^(?=.*[A-Z])(?=.*[a-z]).{0,}$"))
-    .min(6)
-    .max(1024)
-    .required().messages(generateMessages("Password", [6,1024], 0,
+  .pattern(new RegExp("^(?=.*[A-Z])(?=.*[a-z]).{0,}$"))
+  .min(6)
+  .max(1024)
+  .required().messages(generateMessages("Password", [6,1024], 0,
   [1,1,1,1])),
   imageUrl: Joi.string().min(6).max(1024).allow("").messages(generateMessages("Image URL", [6,1024], 0,
   [1,1])),

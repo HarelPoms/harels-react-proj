@@ -2,73 +2,37 @@ import Joi from "joi";
 
 import validation from "./validation";
 
+import generateMessages from "./msgGenerationUtil";
+
 const editCardSchema = Joi.object({
-  title: Joi.string().min(2).max(256).required().messages({
-    "string.min"  : "Title should be at least 2 characters long",
-    "string.max"  : "Title should be at most 256 characters long",
-    "string.empty": "Title cannot be empty"
-  }),
-  subTitle: Joi.string().min(2).max(256).required().messages({
-    "string.min"  : "Subtitle should be at least 2 characters long",
-    "string.max"  : "Subtitle should be at most 256 characters long",
-    "string.empty": "Subtitle cannot be empty"
-  }),
-  description: Joi.string().min(2).max(1024).required().messages({
-    "string.min"  : "Description should be at least 2 characters long",
-    "string.max"  : "Description should be at most 1024 characters long",
-    "string.empty": "Description cannot be empty"
-  }),
-  state: Joi.string().min(2).max(256).allow("").messages({
-    "string.min": "State should be at least 2 characters long",
-    "string.max": "State should be at most 100 characters long"
-  }),
-  country: Joi.string().min(2).max(256).required().messages({
-    "string.min"  : "Country should be at least 2 characters long",
-    "string.max"  : "Country should be at most 256 characters long",
-    "string.empty": "Country cannot be empty"
-  }),
-  city: Joi.string().min(2).max(256).required().messages({
-    "string.min"  : "City should be at least 2 characters long",
-    "string.max"  : "City should be at most 256 characters long",
-    "string.empty": "City cannot be empty"
-  }),
-  street: Joi.string().min(2).max(256).required().messages({
-    "string.min"  : "Street should be at least 2 characters long",
-    "string.max"  : "Street should be at most 256 characters long",
-    "string.empty": "Street cannot be empty"
-  }),
-  houseNumber: Joi.string().min(1).max(256).required().messages({
-    "string.min"  : "House Number should be at least 1 characters long",
-    "string.max"  : "House Number should be at most 256 characters long",
-    "string.empty": "House Number cannot be empty"
-  }),
-  zipCode: Joi.number().min(1).max(256).allow("").messages({
-    "string.min": "Zip Code should be at least 1 characters long",
-    "string.max": "Zip Code should be at most 256 characters long"
-  }),
-  phone: Joi.string().min(9).max(14).required().messages({
-    "string.min"  : "Phone should be at least 9 characters long",
-    "string.max"  : "Phone should be at most 14 characters long",
-    "string.empty": "Phone cannot be empty"
-  }),
-  email: Joi.string().min(5).max(255).required().email({ tlds: { allow: false } }).messages({
-    "string.min"  : "Email should be at least 5 characters long",
-    "string.max"  : "Email should be at most 255 characters long",
-    "string.empty": "Email cannot be empty"
-  }),
-  web: Joi.string().min(5).max(255).allow("").messages({
-    "string.min"  : "Web should be at least 5 characters long",
-    "string.max"  : "Web should be at most 255 characters long",
-    "string.empty": "Web cannot be empty"
-  }),
-  url: Joi.string().min(6).max(1024).allow("").messages({
-    "string.min": "URL should be at least 6 characters long",
-    "string.max": "URL should be at most 1024 characters long"
-  }),
-  alt: Joi.string().min(2).max(256).allow("").messages({
-    "string.min": "Alt should be at least 2 characters long",
-    "string.max": "Alt should be at most 256 characters long"
-  }),
+  title: Joi.string().min(2).max(256).required().messages(generateMessages("Title", [2,256], 0,
+  [1,1,1])),
+  subTitle: Joi.string().min(2).max(256).required().messages(generateMessages("Subtitle", [2,256], 0,
+  [1,1,1])),
+  description: Joi.string().min(2).max(1024).required().messages(generateMessages("Description", [2,1024], 0,
+  [1,1,1])),
+  state: Joi.string().min(2).max(256).allow("").messages(generateMessages("State", [2,256], 0,
+  [1,1])),
+  country: Joi.string().min(2).max(256).required().messages(generateMessages("Country", [2,256], 0,
+  [1,1,1])),
+  city: Joi.string().min(2).max(256).required().messages(generateMessages("City", [2,256], 0,
+  [1,1,1])),
+  street: Joi.string().min(2).max(256).required().messages(generateMessages("Street", [2,256], 0,
+  [1,1,1])),
+  houseNumber: Joi.string().min(1).max(256).required().messages(generateMessages("House Number", [1,256], 0,
+  [1,1,1])),
+  zipCode: Joi.number().min(1).max(256).allow("").messages(generateMessages("Zip Code", [1,256], 0,
+  [1,1])),
+  phone: Joi.string().min(9).max(14).required().messages(generateMessages("Phone", [9,14], 0,
+  [1,1,1])),
+  email: Joi.string().min(5).max(255).required().email({ tlds: { allow: false } }).messages(generateMessages("Email", [5,255], 0,
+  [1,1,1])),
+  web: Joi.string().min(5).max(255).allow("").messages(generateMessages("Web", [2,255], 0,
+  [1,1])),
+  url: Joi.string().min(6).max(1024).allow("").messages(generateMessages("URL", [6,1024], 0,
+  [1,1])),
+  alt: Joi.string().min(2).max(256).allow("").messages(generateMessages("URL", [2,256], 0,
+  [1,1])),
 });
 
 const editCardParamsSchema = Joi.object({
