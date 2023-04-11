@@ -1,8 +1,7 @@
 import Joi from "joi";
-
 import validation from "./validation";
-
 import generateMessages from "./msgGenerationUtil";
+import validateFieldFromSchema from "./validateFieldFromSchemaUtil"
 
 const editCardSchema = Joi.object({
   title: Joi.string().min(2).max(256).required().messages(generateMessages("Title", [2,256], 0,
@@ -44,6 +43,10 @@ const validateEditSchema = (userInput) => validation(editCardSchema, userInput);
 const validateEditCardParamsSchema = (userInput) =>
   validation(editCardParamsSchema, userInput);
 
-export { validateEditCardParamsSchema };
+const validateEditFieldFromSchema = (userInput, userFieldId) => {
+  return (validateFieldFromSchema(editCardSchema, userInput, userFieldId));
+}
+
+export { validateEditCardParamsSchema, validateEditFieldFromSchema };
 
 export default validateEditSchema;

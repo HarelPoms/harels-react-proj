@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import validateRegisterSchema from "../validation/registerValidation";
-import { validateFieldFromSchema } from "../validation/registerValidation";
+import { validateRegisterFieldFromSchema } from "../validation/registerValidation";
 import ROUTES from "../routes/ROUTES";
 import InputComponent from "../components/InputComponent";
 import CancelButtonComponent from "../components/CancelButtonComponent";
@@ -45,7 +45,7 @@ const RegisterPage = () => {
   const handleBtnClick = async (ev) => {
     try {
       const joiResponse = validateRegisterSchema(inputState);
-      console.log(joiResponse);
+      //console.log(joiResponse);
       setInputsErrorsState(joiResponse);
       if (joiResponse) {
         return;
@@ -60,7 +60,7 @@ const RegisterPage = () => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState[ev.target.id] = ev.target.value;
     setInputState(newInputState);
-    let fieldValidationResult = validateFieldFromSchema(ev.target.value, ev.target.id);
+    let fieldValidationResult = validateRegisterFieldFromSchema(ev.target.value, ev.target.id);
     let newErrorState = JSON.parse(JSON.stringify(inputsErrorsState));
     newErrorState[ev.target.id] = fieldValidationResult[ev.target.id];
     setInputsErrorsState(newErrorState);

@@ -13,7 +13,7 @@ import axios from "axios";
 
 import ROUTES from "../routes/ROUTES";
 import validateEditSchema, {
-  validateEditCardParamsSchema,
+  validateEditCardParamsSchema, validateEditFieldFromSchema
 } from "../validation/editValidation";
 import { CircularProgress } from "@mui/material";
 import atom from "../logo.svg";
@@ -37,17 +37,6 @@ const EditCardPage = () => {
         let newInputState = {
           ...data,
         };
-        //should be unneeded now
-        // if (data.image && data.image.url) {
-        //   newInputState.url = data.image.url;
-        // } else {
-        //   newInputState.url = "";
-        // }
-        // if (data.image && data.image.alt) {
-        //   newInputState.alt = data.image.alt;
-        // } else {
-        //   newInputState.alt = "";
-        // }
         delete newInputState.image;
         delete newInputState.likes;
         delete newInputState._id;

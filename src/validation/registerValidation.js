@@ -3,6 +3,7 @@ import Joi from "joi";
 import validation from "./validation";
 
 import generateMessages from "./msgGenerationUtil";
+import validateFieldFromSchema from "./validateFieldFromSchemaUtil"
 
 const registerSchema = Joi.object({
   firstName: Joi.string().min(2).max(100).required().messages(generateMessages("First Name", [2,100], 0,
@@ -42,22 +43,10 @@ const registerSchema = Joi.object({
 const validateRegisterSchema = (userInput) =>
   validation(registerSchema, userInput);
 
-const validateFieldFromSchema = (userInput, userFieldId) => {
-
-  const fieldSchema = registerSchema.extract(userFieldId);
-
-  const validationRes = validation(fieldSchema, userInput);
-
-  let returnVal;
-  if(validationRes){
-    returnVal = validationRes.undefined;
-  }
-  else{
-    returnVal = null;
-  }
-  return {[userFieldId]: returnVal};
+const validateRegisterFieldFromSchema = (userInput, userFieldId) => {
+  return (validateFieldFromSchema(registerSchema, userInput, userFieldId));
 }
 
 export default validateRegisterSchema;
 
-export {validateFieldFromSchema};
+export {validateRegisterFieldFromSchema};
