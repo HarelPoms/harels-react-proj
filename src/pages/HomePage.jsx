@@ -23,8 +23,6 @@ const HomePage = () => {
     axios
       .get("/cards/cards")
       .then(({ data }) => {
-        //console.log("data", data);
-        // setCardsArr(data);
         filterFunc(data);
       })
       .catch((err) => {
@@ -34,6 +32,7 @@ const HomePage = () => {
       });
   }, []);
   const filterFunc = (data) => {
+    console.log(payload);
     if (!originalCardsArr && !data) {
       return;
     }
@@ -98,7 +97,7 @@ const HomePage = () => {
               img={item.image ? item.image.url : ""}
               onDelete={handleDeleteFromInitialCardsArr}
               onEdit={handleEditFromInitialCardsArr}
-              canEdit={payload && (payload.biz || payload.isAdmin)}
+              canEdit={payload && (payload.biz || payload.isAdmin) && item.user_id == payload._id }
             />
           </Grid>
         ))}
