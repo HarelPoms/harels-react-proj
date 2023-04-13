@@ -22,7 +22,7 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-  const [inputsErrorsState, setInputsErrorsState] = useState(null);
+  const [inputsErrorsState, setInputsErrorsState] = useState({});
   const loggedIn = useLoggedIn();
   const navigate = useNavigate();
 
