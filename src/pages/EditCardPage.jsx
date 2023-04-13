@@ -19,6 +19,7 @@ import { toast } from "react-toastify";
 import InputComponent from "../components/InputComponent";
 import CancelButtonComponent from "../components/CancelButtonComponent";
 import RefreshButtonComponent from "../components/RefreshButtonComponent";
+import { useSelector } from "react-redux";
 
 const EditCardPage = () => {
   const startingInputVal = null;
@@ -26,6 +27,7 @@ const EditCardPage = () => {
   const { id } = useParams();
   const [inputState, setInputState] = useState(startingInputVal);
   const [inputsErrorsState, setInputsErrorsState] = useState(startingInputErrVal);
+  const payload = useSelector((bigPie) => bigPie.authSlice.payload);
   const navigate = useNavigate();
   useEffect(() => {
     (async () => {
@@ -36,17 +38,23 @@ const EditCardPage = () => {
           navigate("/");
           return;
         }
-        const { data } = await axios.get("/cards/card/" + id);
+        const { data : currCard } = await axios.get("/cards/card/" + id);
+        const { data : cardsOfUser } = await axios.get("/cards/my-cards");
+        let filterObj = cardsOfUser.filter((card)=>card._id == id)[0];
+        if(!filterObj){
+          toast.error("You have no permissions for this business card");
+          navigate(ROUTES.HOME);
+        }
         let newInputState = {
-          ...data,
+          ...currCard,
         };
-        if (data.image && data.image.url) {
-          newInputState.url = data.image.url;
+        if (currCard.image && currCard.image.url) {
+          newInputState.url = currCard.image.url;
         } else {
           newInputState.url = "";
         }
-        if (data.image && data.image.alt) {
-          newInputState.alt = data.image.alt;
+        if (currCard.image && currCard.image.alt) {
+          newInputState.alt = currCard.image.alt;
         } else {
           newInputState.alt = "";
         }
