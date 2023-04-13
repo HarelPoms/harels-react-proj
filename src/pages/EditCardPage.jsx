@@ -57,7 +57,6 @@ const EditCardPage = () => {
         delete newInputState.user_id;
         delete newInputState.bizNumber;
         delete newInputState.createdAt;
-        console.log(newInputState);
         setInputState(newInputState);
       } catch (err) {
         console.log("error from axios", err);
@@ -68,9 +67,8 @@ const EditCardPage = () => {
     try {
       const joiResponse = validateEditSchema(inputState);
       setInputsErrorsState(joiResponse);
-      console.log(joiResponse);
+      //console.log(joiResponse);
       if (!joiResponse) {
-        //move to homepage
         await axios.put("/cards/" + id, inputState);
         navigate(ROUTES.HOME);
       }
