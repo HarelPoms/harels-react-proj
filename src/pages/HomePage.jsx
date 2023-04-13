@@ -23,7 +23,7 @@ const HomePage = () => {
     axios
       .get("/cards/cards")
       .then(({ data }) => {
-        console.log("data", data);
+        //console.log("data", data);
         // setCardsArr(data);
         filterFunc(data);
       })
@@ -46,7 +46,7 @@ const HomePage = () => {
         when component loaded and states not loaded
       */
       setOriginalCardsArr(data);
-      console.log(data);
+      //console.log(data);
       setCardsArr(data.filter((card) => card.title.startsWith(filter) || card.bizNumber.startsWith(filter)));
       return;
     }

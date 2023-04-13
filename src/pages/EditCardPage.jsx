@@ -32,7 +32,7 @@ const EditCardPage = () => {
       try {
         const errors = validateEditCardParamsSchema({ id });
         if (errors) {
-          // there was errors = incorrect id
+          // there were errors = incorrect id
           navigate("/");
           return;
         }

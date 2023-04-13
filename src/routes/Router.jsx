@@ -14,6 +14,7 @@ import NestedRoutePage from "../pages/NestedRoutePage";
 import NestedPage1 from "../pages/NestedRoutePage/NestedPage1";
 import NestedPage2 from "../pages/NestedRoutePage/NestedPage2";
 import NewCardPage from "../pages/NewCardPage";
+import FullDetailsCardPage from "../pages/FullDetailsCardPage";
 
 //element={<ProtectedRoute element={<LogoutPage />} />}
 
@@ -55,6 +56,7 @@ const Router = () => {
           />
         }
       />
+      <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
       <Route path="/rrp" element={<ReRenderPage />} />
       <Route path="/usememo" element={<UseMemoPage />} />
       <Route path="/nr" element={<NestedRoutePage />}>
