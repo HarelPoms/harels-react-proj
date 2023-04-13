@@ -14,6 +14,8 @@ import axios from "axios";
 import ROUTES from "../routes/ROUTES";
 import validateLoginSchema from "../validation/loginValidation";
 import useLoggedIn from "../hooks/useLoggedIn";
+import { validateLoginFieldFromSchema } from "../validation/loginValidation";
+
 
 const LoginPage = () => {
   const [inputState, setInputState] = useState({
@@ -44,6 +46,10 @@ const LoginPage = () => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState[ev.target.id] = ev.target.value;
     setInputState(newInputState);
+    let fieldValidationResult = validateLoginFieldFromSchema(ev.target.value, ev.target.id);
+    let newErrorState = JSON.parse(JSON.stringify(inputsErrorsState));
+    newErrorState[ev.target.id] = fieldValidationResult[ev.target.id];
+    setInputsErrorsState(newErrorState);
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -109,7 +115,7 @@ const LoginPage = () => {
             sx={{ mt: 3, mb: 2 }}
             onClick={handleBtnClick}
           >
-            Sign In
+            Login
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
