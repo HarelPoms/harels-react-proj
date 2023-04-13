@@ -4,15 +4,10 @@ import RegisterPage from "../pages/RegisterPage";
 import ROUTES from "./ROUTES";
 import LoginPage from "../pages/LoginPage";
 import EditCardPage from "../pages/EditCardPage";
-import ReRenderPage from "../pages/ReRenderPage/ReRenderPage";
-import UseMemoPage from "../pages/ReRenderPage/UseMemoPage";
 import ProtectedRoute from "../components/ProtectedRoute";
 import ProfilePage from "../pages/ProfilePage";
 import SuperProtectedRoute from "../components/SuperProtectedRoute";
 import LogoutPage from "../pages/LogoutPage";
-import NestedRoutePage from "../pages/NestedRoutePage";
-import NestedPage1 from "../pages/NestedRoutePage/NestedPage1";
-import NestedPage2 from "../pages/NestedRoutePage/NestedPage2";
 import NewCardPage from "../pages/NewCardPage";
 import FullDetailsCardPage from "../pages/FullDetailsCardPage";
 
@@ -57,12 +52,6 @@ const Router = () => {
         }
       />
       <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
-      <Route path="/rrp" element={<ReRenderPage />} />
-      <Route path="/usememo" element={<UseMemoPage />} />
-      <Route path="/nr" element={<NestedRoutePage />}>
-        <Route path="nestedpage1" element={<NestedPage1 />} />
-        <Route path="nestedpage2" element={<NestedPage2 />} />
-      </Route>
       <Route path="*" element={<h1>404</h1>} />
     </Routes>
   );
