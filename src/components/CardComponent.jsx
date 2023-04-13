@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 import { Fragment } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 // const CardComponent = (props) => { - - - }
 const CardComponent = ({
@@ -22,6 +24,8 @@ const CardComponent = ({
   onEdit,
   canEdit,
 }) => {
+  const navigate = useNavigate();
+
   const handleDeleteBtnClick = () => {
     console.log("id", id);
     onDelete(id);
@@ -31,7 +35,7 @@ const CardComponent = ({
   };
 
   const openDetailsPage = () => {
-    console.log("Hello");
+    navigate(`/full_details/${id}`);
   }
   return (
     <Card square raised>

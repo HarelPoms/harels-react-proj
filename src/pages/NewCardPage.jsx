@@ -39,6 +39,7 @@ const NewCardPage = () => {
 
                 if (!joiResponse) {
                     await axios.post("/cards/", inputState);
+                    toast.success("Succeeded to save new card");
                     //move to homepage
                     navigate(ROUTES.HOME);
                 }
@@ -46,7 +47,7 @@ const NewCardPage = () => {
             }
             catch(err){
                 console.log("Error while saving new card " + err);
-                toast.error("Oops");
+                toast.error("Failed to save new card");
             }
         })();
     };

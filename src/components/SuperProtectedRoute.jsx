@@ -17,7 +17,7 @@ const SuperProtectedRoute = ({ element, isAdmin, isBiz }) => {
       return element;
     }
   }
-  toast.error("invalid permissions");
+  toast.error("Invalid Permissions");
   return <Navigate to={ROUTES.LOGIN} />;
 };
 export default SuperProtectedRoute;

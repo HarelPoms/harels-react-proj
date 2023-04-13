@@ -2,6 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { CircularProgress } from "@mui/material";
 import axios from "axios";
+import CardDetailsComponent from "../components/CardDetailsComponent"
 
 import {validateEditCardParamsSchema} from "../validation/editValidation";
 
@@ -14,9 +15,9 @@ const FullDetailsCardPage = () => {
             try {
                 const errors = validateEditCardParamsSchema({ id });
                 if (errors) {
-                // there were errors = incorrect id
-                navigate("/");
-                return;
+                    // there were errors = incorrect id
+                    navigate("/");
+                    return;
                 }
                 const { data } = await axios.get("/cards/card/" + id);
                 let newInputState = {
@@ -32,6 +33,7 @@ const FullDetailsCardPage = () => {
                 } else {
                 newInputState.alt = "";
                 }
+                delete newInputState.__v;
                 delete newInputState.image;
                 delete newInputState.likes;
                 delete newInputState._id;
@@ -48,7 +50,9 @@ const FullDetailsCardPage = () => {
     if (!inputState) {
         return <CircularProgress />;
     }
-    return ('');
+    return (
+        <CardDetailsComponent {...inputState} />
+    );
 }
 
 export default FullDetailsCardPage;

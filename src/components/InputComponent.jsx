@@ -34,7 +34,6 @@ InputComponent.propTypes = {
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     inputState: PropTypes.object.isRequired,
-    inputsErrorsState: PropTypes.object.isRequired,
     handleInputChange: PropTypes.func.isRequired,
     isRequired: PropTypes.bool.isRequired,
     inputType: PropTypes.string.isRequired
@@ -42,7 +41,8 @@ InputComponent.propTypes = {
 
 InputComponent.defaultProps = {
     isRequired: false,
-    inputType: "text"
+    inputType: "text",
+    inputErrorsState: {}
 };
 
 

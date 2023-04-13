@@ -30,7 +30,7 @@ const HomePage = () => {
       .catch((err) => {
         console.log("err from axios", err);
 
-        toast.error("Oops");
+        toast.error("Failed to retrieve buisiness cards data");
       });
   }, []);
   const filterFunc = (data) => {

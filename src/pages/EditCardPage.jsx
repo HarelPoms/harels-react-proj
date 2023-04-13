@@ -50,12 +50,14 @@ const EditCardPage = () => {
         } else {
           newInputState.alt = "";
         }
+        delete newInputState.__v;
         delete newInputState.image;
         delete newInputState.likes;
         delete newInputState._id;
         delete newInputState.user_id;
         delete newInputState.bizNumber;
         delete newInputState.createdAt;
+        console.log(newInputState);
         setInputState(newInputState);
       } catch (err) {
         console.log("error from axios", err);
@@ -74,7 +76,7 @@ const EditCardPage = () => {
       }
     } catch (err) {
       console.log("err", err);
-      toast.error("errrrrrrrrrrrrrrrror");
+      toast.error("Failed to Save Edit");
     }
   };
 
