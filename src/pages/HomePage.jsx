@@ -79,6 +79,21 @@ const HomePage = () => {
     navigate(`/edit/${id}`); //localhost:3000/edit/123213
   };
 
+  const handleLikeFromCards = async (id) => {
+    try {
+      let { data : cardBeingLiked } = await axios.get("/cards/card/" + id);
+      let newInputState = {
+          ...cardBeingLiked,
+        };
+      newInputState.likes = [...newInputState.likes, payload._id];
+      delete newInputState.__v;
+      delete newInputState.image;
+      await axios.put("/cards/" + id, newInputState); 
+    } catch(err){
+
+    }
+  } 
+
   if (!cardsArr) {
     return <CircularProgress />;
   }
@@ -96,6 +111,7 @@ const HomePage = () => {
               img={item.image ? item.image.url : ""}
               onDelete={handleDeleteFromInitialCardsArr}
               onEdit={handleEditFromInitialCardsArr}
+              onLike={handleLikeFromCards}
               canEdit={payload && (payload.biz || payload.isAdmin) && item.user_id == payload._id }
               canDelete={payload && (payload.isAdmin || (payload.biz && item.user_id == payload._id))}
               canLike={payload && !payload.isAdmin && !payload.biz}

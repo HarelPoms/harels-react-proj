@@ -26,6 +26,7 @@ const CardComponent = ({
   id,
   onDelete,
   onEdit,
+  onLike,
   canEdit,
   canDelete,
   canLike
@@ -41,9 +42,14 @@ const CardComponent = ({
     onEdit(id);
   };
 
+  const handleLikeBtnClick = () => {
+    onLike(id);
+  }
+
   const openDetailsPage = () => {
     navigate(`/full_details/${id}`);
   }
+
   return (
     <Card square raised>
       <CardActionArea onClick={openDetailsPage}>
@@ -55,7 +61,7 @@ const CardComponent = ({
       </CardContent>
       <CardActions>
         {canLike ? 
-        <Button variant="text" color="primary">
+        <Button variant="text" color="primary" onClick={handleLikeBtnClick}>
           <FavoriteIcon />
         </Button> : ""}
         {canEdit ? (
