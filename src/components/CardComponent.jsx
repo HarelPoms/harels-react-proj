@@ -11,6 +11,10 @@ import {
 import PropTypes from "prop-types";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
+import ModeEditIcon from '@mui/icons-material/ModeEdit';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useSelector } from "react-redux";
 
 
 // const CardComponent = (props) => { - - - }
@@ -25,6 +29,7 @@ const CardComponent = ({
   canEdit,
 }) => {
   const navigate = useNavigate();
+  const isLoggedIn = useSelector((bigState) => bigState.authSlice.isLoggedIn);
 
   const handleDeleteBtnClick = () => {
     console.log("id", id);
@@ -47,16 +52,17 @@ const CardComponent = ({
         <Typography>{description}</Typography>
       </CardContent>
       <CardActions>
+        {isLoggedIn ? 
         <Button variant="text" color="primary">
-          Buy now
-        </Button>
+          <FavoriteIcon />
+        </Button> : ""}
         {canEdit ? (
           <Fragment>
             <Button variant="text" color="error" onClick={handleDeleteBtnClick}>
-              Delete
+              <DeleteForeverIcon />
             </Button>
             <Button variant="text" color="warning" onClick={handleEditBtnClick}>
-              Edit
+              <ModeEditIcon />
             </Button>
           </Fragment>
         ) : (
