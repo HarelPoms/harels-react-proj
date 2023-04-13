@@ -47,9 +47,13 @@ const CardComponent = ({
   const handleEditBtnClick = () => {
     onEdit(id);
   };
+
+  const openDetailsPage = () => {
+    console.log("Hello");
+  }
   return (
     <Card square raised>
-      <CardActionArea>
+      <CardActionArea onClick={openDetailsPage}>
         <CardMedia component="img" image={img} />
       </CardActionArea>
       <CardHeader title={title} subheader={subTitle}></CardHeader>
