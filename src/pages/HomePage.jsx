@@ -98,6 +98,7 @@ const HomePage = () => {
               onEdit={handleEditFromInitialCardsArr}
               canEdit={payload && (payload.biz || payload.isAdmin) && item.user_id == payload._id }
               canDelete={payload && (payload.isAdmin || (payload.biz && item.user_id == payload._id))}
+              canLike={payload && !payload.isAdmin && !payload.biz}
             />
           </Grid>
         ))}

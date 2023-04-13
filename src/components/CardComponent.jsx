@@ -27,7 +27,8 @@ const CardComponent = ({
   onDelete,
   onEdit,
   canEdit,
-  canDelete
+  canDelete,
+  canLike
 }) => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector((bigState) => bigState.authSlice.isLoggedIn);
@@ -53,7 +54,7 @@ const CardComponent = ({
         <Typography>{description}</Typography>
       </CardContent>
       <CardActions>
-        {isLoggedIn ? 
+        {canLike ? 
         <Button variant="text" color="primary">
           <FavoriteIcon />
         </Button> : ""}

@@ -34,7 +34,7 @@ const RegisterPage = () => {
     street: "",
     houseNumber: "",
     zipCode: "",
-    isBiz: false
+    biz: false
   };
 
   const startingInputErrVal = {};
@@ -44,7 +44,7 @@ const RegisterPage = () => {
   const handleBtnClick = async (ev) => {
     try {
       const joiResponse = validateRegisterSchema(inputState);
-      //console.log(joiResponse);
+      console.log(joiResponse);
       setInputsErrorsState(joiResponse);
       if (joiResponse) {
         return;
@@ -110,7 +110,7 @@ const RegisterPage = () => {
 
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox id="isBiz" checked={inputState.isBiz} onChange={handleCheckboxChange} color="primary" />}
+                control={<Checkbox id="biz" checked={inputState.biz} onChange={handleCheckboxChange} color="primary" />}
                 label="Register as Business"
               />
             </Grid>
