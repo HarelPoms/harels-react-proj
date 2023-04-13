@@ -41,16 +41,6 @@ const Router = () => {
         path={ROUTES.PROFILE}
         element={<ProtectedRoute element={<ProfilePage />} />}
       />
-      <Route
-        path="/createcard"
-        element={
-          <SuperProtectedRoute
-            isAdmin={false}
-            isBiz={true}
-            element={<h1>Create card</h1>}
-          />
-        }
-      />
       <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
       <Route path="*" element={<h1>404</h1>} />
     </Routes>
