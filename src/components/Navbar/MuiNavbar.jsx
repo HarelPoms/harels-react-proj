@@ -142,7 +142,7 @@ const MuiNavbar = () => {
             }}>
               {isDarkTheme ? <DarkModeIcon onClick={changeTheme} /> :
               <LightModeIcon onClick={changeTheme}/>}
-              {isLoggedIn ? <Avatar alt="profile pic" src="https://cdn-icons-png.flaticon.com/128/1077/1077114.png" sx={{ display: { xs: "none", md: "block" } }} /> : ""}
+              {isLoggedIn ? <Avatar alt="profile pic" src="https://cdn-icons-png.flaticon.com/128/1077/1077114.png" /> : ""}
             </Box>
             
           </Box>
