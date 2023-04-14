@@ -7,7 +7,7 @@ import useQueryParams from "../hooks/useQueryParams";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Button from "@mui/material/Button";
-import ControlPointIcon from '@mui/icons-material/ControlPoint';
+import AddIcon from '@mui/icons-material/Add';
 import ROUTES from "../routes/ROUTES";
 
 const MyCardsPage = () => {
@@ -123,8 +123,8 @@ const MyCardsPage = () => {
             ))}
             <Grid item xs={10}></Grid>
             <Grid item xs={2} >
-                <Button variant="contained" color="success" sx={ { borderRadius: 28 } } onClick={handleCreateClick}>
-                    <ControlPointIcon />
+                <Button variant="contained" color="success" sx={ { borderRadius: 18 } } onClick={handleCreateClick}>
+                    <AddIcon />
                 </Button>
             </Grid>
         </Grid>
