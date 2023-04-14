@@ -35,7 +35,6 @@ const CardComponent = ({
   const isLoggedIn = useSelector((bigState) => bigState.authSlice.isLoggedIn);
 
   const handleDeleteBtnClick = () => {
-    console.log("id", id);
     onDelete(id);
   };
   const handleEditBtnClick = () => {

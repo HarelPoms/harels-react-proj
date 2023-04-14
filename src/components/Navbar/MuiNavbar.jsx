@@ -181,25 +181,26 @@ const MuiNavbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem
-                  key={"miniLinks" + page.url}
-                  onClick={handleCloseNavMenu}
-                >
-                  <NavLink to={page.url}>
-                    {/* if the current page and the link is the same then it will change the color of the link */}
-                    {({ isActive }) => (
-                      <Typography
-                        sx={{
-                          textAlign: "center",
-                          color: `${isActive ? "red" : ""}`,
-                        }}
-                      >
-                        {page.label}
-                      </Typography>
-                    )}
-                  </NavLink>
-                </MenuItem>
-              ))}
+              <NavLinkComponent key={page.url} {...page} />
+            ))}
+            {isLoggedIn
+              ? authedPages.map((page) =>
+                  page.url === ROUTES.LOGOUT ? (
+                    <NavLinkComponent
+                      key={page.url}
+                      {...page}
+                      onClick={logoutClick}
+                    />
+                  ) : (
+                    <NavLinkComponent key={page.url} {...page} />
+                  )
+                )
+              : notAuthPages.map((page) => (
+                  <NavLinkComponent key={page.url} {...page} />
+                ))}
+                {payload && payload.biz ? bizPages.map((page) => (
+                  <NavLinkComponent key={page.url} {...page} />
+                )) : ""}
             </Menu>
           </Box>
         </Toolbar>
