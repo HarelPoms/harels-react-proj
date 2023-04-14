@@ -100,7 +100,7 @@ const MuiNavbar = () => {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar>
-          <Box onClick={logoClick}>
+          <Box onClick={logoClick} sx={{ display: { xs: "none", md: "inline" } }}>
             <CameraAltIcon />
           </Box>
           
@@ -140,10 +140,10 @@ const MuiNavbar = () => {
               alignItems: 'center',
               flexWrap: 'wrap',
             }}>
-              {isDarkTheme ? <DarkModeIcon sx={{ display: { xs: "none", md: "inline" } }}/> :
-              <LightModeIcon sx={{ display: { xs: "none", md: "inline" } }} />}
+              {isDarkTheme ? <DarkModeIcon /> :
+              <LightModeIcon />}
               <Switch checked={isDarkTheme} onChange={changeTheme} />
-              {isLoggedIn ? <Avatar alt="profile pic" src="" /> : ""}
+              {isLoggedIn ? <Avatar alt="profile pic" src="" sx={{ display: { xs: "none", md: "block" } }} /> : ""}
             </Box>
             
           </Box>
