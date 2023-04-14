@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../routes/ROUTES";
 
-const CancelButtonComponent = (handleCancelClick) => {
+const CancelButtonComponent = () => {
     const navigate = useNavigate();
     const cancelBtnClick = () => {
         navigate(ROUTES.HOME);
