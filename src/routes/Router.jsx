@@ -10,6 +10,7 @@ import SuperProtectedRoute from "../components/SuperProtectedRoute";
 import LogoutPage from "../pages/LogoutPage";
 import NewCardPage from "../pages/NewCardPage";
 import FullDetailsCardPage from "../pages/FullDetailsCardPage";
+import MyCardsPage from "../pages/MyCardsPage";
 
 //element={<ProtectedRoute element={<LogoutPage />} />}
 
@@ -24,6 +25,7 @@ const Router = () => {
         path={ROUTES.LOGOUT}
         element={<ProtectedRoute element={<LogoutPage />} />}
       />
+      <Route path={ROUTES.MYCARDS} element={<ProtectedRoute element={<MyCardsPage />} />} />
       <Route path="/new_card" element={
       <SuperProtectedRoute isAdmin={false} isBiz={true} element={<NewCardPage />} />
       } />

@@ -52,6 +52,10 @@ const authedPages = [
     label: "Logout",
     url: ROUTES.LOGOUT,
   },
+  {
+    label: "My Cards",
+    url: ROUTES.MYCARDS
+  }
 ];
 
 //Biz pages

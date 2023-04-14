@@ -6,7 +6,8 @@ const ROUTES = {
   PROFILE: "/profile",
   LOGOUT: "/logout",
   NEWCARD: "/new_card",
-  FULLCARDDETAILS: "/full_details/:id"
+  FULLCARDDETAILS: "/full_details/:id",
+  MYCARDS: "/my_cards"
 };
 
 export default ROUTES;
