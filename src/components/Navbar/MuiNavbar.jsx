@@ -140,10 +140,9 @@ const MuiNavbar = () => {
               alignItems: 'center',
               flexWrap: 'wrap',
             }}>
-              {isDarkTheme ? <DarkModeIcon /> :
-              <LightModeIcon />}
-              <Switch checked={isDarkTheme} onChange={changeTheme} />
-              {isLoggedIn ? <Avatar alt="profile pic" src="" sx={{ display: { xs: "none", md: "block" } }} /> : ""}
+              {isDarkTheme ? <DarkModeIcon onClick={changeTheme} /> :
+              <LightModeIcon onClick={changeTheme}/>}
+              {isLoggedIn ? <Avatar alt="profile pic" src="https://cdn-icons-png.flaticon.com/128/1077/1077114.png" sx={{ display: { xs: "none", md: "block" } }} /> : ""}
             </Box>
             
           </Box>
