@@ -16,7 +16,6 @@ import Avatar from '@mui/material/Avatar';
 import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
 import { darkThemeActions } from "../../store/darkTheme";
-import { authActions } from "../../store/auth";
 import NavbarMenuLinks from "./NavbarMenuLinks";
 
 const MuiNavbar = () => {
