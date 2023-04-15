@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -20,6 +21,7 @@ import NavbarMenuLinks from "./NavbarMenuLinks";
 
 const MuiNavbar = () => {
   const navigate = useNavigate();
+  const [isSearchUnfocused, setIsSearchUnfocused] = useState(true);
   const isLoggedIn = useSelector(
     (bigPie) => bigPie.authSlice.isLoggedIn
   );
@@ -45,6 +47,10 @@ const MuiNavbar = () => {
     navigate(ROUTES.HOME);
   }
 
+  const trackSearchUnfocused = () => {
+    setIsSearchUnfocused(!isSearchUnfocused);
+  }
+
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -57,7 +63,7 @@ const MuiNavbar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             <NavbarMenuLinks />
           </Box>
-          <SearchPartial />
+          <SearchPartial handleSearchFocus={trackSearchUnfocused}/>
           <Box
             sx={{
               my: 2,
@@ -69,9 +75,10 @@ const MuiNavbar = () => {
               alignItems: 'center',
               flexWrap: 'wrap',
             }}>
-              {isDarkTheme ? <DarkModeIcon onClick={changeTheme} /> :
-              <LightModeIcon onClick={changeTheme}/>}
-              {isLoggedIn ? <Avatar alt="profile pic" src="https://cdn-icons-png.flaticon.com/128/1077/1077114.png" /> : ""}
+              {isDarkTheme && isSearchUnfocused ? <DarkModeIcon onClick={changeTheme} /> :
+              isSearchUnfocused ?
+              <LightModeIcon onClick={changeTheme}/> : ""}
+              {isLoggedIn && isSearchUnfocused ? <Avatar alt="profile pic" src="https://cdn-icons-png.flaticon.com/128/1077/1077114.png" /> : ""}
             </Box>
             
           </Box>

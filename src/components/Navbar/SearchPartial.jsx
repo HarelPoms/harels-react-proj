@@ -47,7 +47,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const SearchPartial = () => {
+const SearchPartial = ({handleSearchFocus}) => {
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
   const handleSearchChange = (e) => {
@@ -57,6 +57,9 @@ const SearchPartial = () => {
     e.preventDefault();
     navigate(`${ROUTES.HOME}?filter=${searchInput}`);
   };
+  const handleClickSearch =() =>{
+    handleSearchFocus();
+  }
   return (
     <form onSubmit={handleSearchSubmit}>
       <Search>
@@ -66,6 +69,8 @@ const SearchPartial = () => {
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
+          onFocus={handleClickSearch}
+          onBlur={handleClickSearch}
           onChange={handleSearchChange}
           value={searchInput}
         />
