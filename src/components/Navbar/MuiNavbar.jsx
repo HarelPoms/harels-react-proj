@@ -4,72 +4,26 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import MenuItem from "@mui/material/MenuItem";
-import { Switch } from "@mui/material";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Avatar from '@mui/material/Avatar';
 
 import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
 import { darkThemeActions } from "../../store/darkTheme";
-import NavLinkComponent from "./NavLinkComponent";
 import { authActions } from "../../store/auth";
 import NavbarMenuLinks from "./NavbarMenuLinks";
-
-// access to all
-const pages = [
-  {
-    label: "Home",
-    url: ROUTES.HOME,
-  },
-];
-
-//not logged in users
-const notAuthPages = [
-  {
-    label: "Register",
-    url: ROUTES.REGISTER,
-  },
-  {
-    label: "Login",
-    url: ROUTES.LOGIN,
-  },
-];
-
-//logged in users
-const authedPages = [
-  {
-    label: "Profile",
-    url: ROUTES.PROFILE,
-  },
-  {
-    label: "Logout",
-    url: ROUTES.LOGOUT,
-  },
-  {
-    label: "My Cards",
-    url: ROUTES.MYCARDS
-  }
-];
-
-//Biz pages
-const bizPages = [
-  {label: "Create", url:ROUTES.NEWCARD},
-];
 
 const MuiNavbar = () => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector(
     (bigPie) => bigPie.authSlice.isLoggedIn
   );
-  const payload = useSelector((bigPie) => bigPie.authSlice.payload);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const dispatch = useDispatch();
   const isDarkTheme = useSelector(
@@ -86,11 +40,6 @@ const MuiNavbar = () => {
 
   const changeTheme = () => {
     dispatch(darkThemeActions.changeTheme());
-  };
-
-  const logoutClick = () => {
-    localStorage.clear();
-    dispatch(authActions.logout());
   };
 
   const logoClick = () => {

@@ -57,6 +57,7 @@ const NavbarMenuLinks = () => {
         localStorage.clear();
         dispatch(authActions.logout());
     };
+
     return (
         <Fragment>
         {pages.map((page) => (
