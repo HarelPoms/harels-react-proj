@@ -21,6 +21,7 @@ import ROUTES from "../../routes/ROUTES";
 import { darkThemeActions } from "../../store/darkTheme";
 import NavLinkComponent from "./NavLinkComponent";
 import { authActions } from "../../store/auth";
+import NavbarMenuLinks from "./NavbarMenuLinks";
 
 // access to all
 const pages = [
@@ -106,27 +107,7 @@ const MuiNavbar = () => {
           
           {/* main navbar */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <NavLinkComponent key={page.url} {...page} />
-            ))}
-            {isLoggedIn
-              ? authedPages.map((page) =>
-                  page.url === ROUTES.LOGOUT ? (
-                    <NavLinkComponent
-                      key={page.url}
-                      {...page}
-                      onClick={logoutClick}
-                    />
-                  ) : (
-                    <NavLinkComponent key={page.url} {...page} />
-                  )
-                )
-              : notAuthPages.map((page) => (
-                  <NavLinkComponent key={page.url} {...page} />
-                ))}
-                {payload && payload.biz ? bizPages.map((page) => (
-                  <NavLinkComponent key={page.url} {...page} />
-                )) : ""}
+            <NavbarMenuLinks />
           </Box>
           <SearchPartial />
           <Box
@@ -180,27 +161,7 @@ const MuiNavbar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-              <NavLinkComponent key={page.url} {...page} />
-            ))}
-            {isLoggedIn
-              ? authedPages.map((page) =>
-                  page.url === ROUTES.LOGOUT ? (
-                    <NavLinkComponent
-                      key={page.url}
-                      {...page}
-                      onClick={logoutClick}
-                    />
-                  ) : (
-                    <NavLinkComponent key={page.url} {...page} />
-                  )
-                )
-              : notAuthPages.map((page) => (
-                  <NavLinkComponent key={page.url} {...page} />
-                ))}
-                {payload && payload.biz ? bizPages.map((page) => (
-                  <NavLinkComponent key={page.url} {...page} />
-                )) : ""}
+              <NavbarMenuLinks />
             </Menu>
           </Box>
         </Toolbar>
