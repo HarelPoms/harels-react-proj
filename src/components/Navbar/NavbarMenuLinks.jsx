@@ -79,8 +79,8 @@ const NavbarMenuLinks = () => {
                 {payload && payload.biz ? bizPages.map((page) => (
                     <NavLinkComponent key={page.url} {...page} />
                 )) : ""}
-                </Fragment>
-            );
+        </Fragment>
+        );
 }
 
 export default NavbarMenuLinks;
