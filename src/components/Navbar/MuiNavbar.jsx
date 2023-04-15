@@ -83,7 +83,7 @@ const MuiNavbar = () => {
             
           </Box>
           {/* hamburger with menu */}
-          <Box
+          {isSearchUnfocused ? <Box
             sx={{
               flexGrow: 1,
               flex: 1,
@@ -118,7 +118,8 @@ const MuiNavbar = () => {
             >
               <NavbarMenuLinks />
             </Menu>
-          </Box>
+          </Box> : ""}
+          
         </Toolbar>
       </Container>
     </AppBar>
