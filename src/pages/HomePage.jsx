@@ -1,7 +1,8 @@
-import { Box, CircularProgress, Grid } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Divider from '@mui/material/Divider';
 
 import CardComponent from "../components/CardComponent";
 import { toast } from "react-toastify";
@@ -81,11 +82,21 @@ const HomePage = () => {
 
   const handleLikeFromCards = async (id) => {
     try {
-      let res = await axios.patch("/cards/card-like/"+ id);
+      await axios.patch("/cards/card-like/"+ id);
+      toast.success("Added to Favorites");
     } catch(err){
-
+      toast.error("Failed to Favorite Card");
     }
-  } 
+  }
+
+  const handleDislikeFromCards = async (id) => {
+    try {
+      await axios.patch("/cards/card-like/"+ id);
+      toast.success("Removed from Favorites");
+    } catch(err){
+      toast.error("Failed to remove card from favorites");
+    }
+  }
 
   if (!cardsArr) {
     return <CircularProgress />;
@@ -93,6 +104,9 @@ const HomePage = () => {
 
   return (
     <Box>
+      <Typography variant="h1"> Cards Page </Typography>
+      <Typography variant="h3"> Here you can find business cards of all categories </Typography>
+      <Divider> Cards on display </Divider>
       <Grid container spacing={2}>
         {cardsArr.map((item) => (
           <Grid item xs={6} md={4} key={item._id + Date.now()}>

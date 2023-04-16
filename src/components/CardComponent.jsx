@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import { useSelector } from "react-redux";
 
 
@@ -62,7 +63,11 @@ const CardComponent = ({
         {canLike ? 
         <Button variant="text" color="primary" onClick={handleLikeBtnClick}>
           <FavoriteIcon />
-        </Button> : ""}
+        </Button> : 
+        <Button variant="text" color="primary" onClick={handleLikeBtnClick}>
+          <HeartBrokenIcon />
+        </Button>
+        }
         {canEdit ? (
           <Fragment>
             <Button variant="text" color="warning" onClick={handleEditBtnClick}>

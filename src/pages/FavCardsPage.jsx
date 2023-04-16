@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid } from "@mui/material";
+import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import CardComponent from "../components/CardComponent";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import useQueryParams from "../hooks/useQueryParams";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Fragment } from "react";
+import Divider from '@mui/material/Divider';
 import Button from "@mui/material/Button";
 import AddIcon from '@mui/icons-material/Add';
 import ROUTES from "../routes/ROUTES";
@@ -47,8 +47,6 @@ const FavCardsPage = () => {
         */
         let favData = data.filter((card) => card.likes.includes(payload._id));
         setOriginalCardsArr(favData);
-        //console.log(data);
-        //setCardsArr(data.filter((card) => card.likes.includes(payload._id)));
         setCardsArr(favData.filter((card) => card.title.startsWith(filter) || card.bizNumber.startsWith(filter)));
         
         return;
@@ -58,7 +56,6 @@ const FavCardsPage = () => {
             when all loaded and states loaded
         */
         let newOriginalCardsArr = JSON.parse(JSON.stringify(originalCardsArr));
-        //setCardsArr(newOriginalCardsArr.filter((card) => card.likes.includes(payload._id)));
         setCardsArr(
             newOriginalCardsArr.filter((card) => card.title.startsWith(filter) || card.bizNumber.startsWith(filter))
         );
@@ -101,24 +98,25 @@ const FavCardsPage = () => {
     }
     return (
         <Box>
+        <Typography variant="h1"> My Favorite Cards Page </Typography>
+        <Typography variant="h3"> Cards I've favorited </Typography>
+        <Divider> My Favorited Cards </Divider>
         <Grid container spacing={2}>
             {cardsArr.map((item) => (
             <Grid item xs={6} md={4} key={item._id + Date.now()}>
-                {item.likes.includes(payload._id) ? 
-                    <CardComponent
-                    id={item._id}
-                    title={item.title}
-                    subTitle={item.subTitle}
-                    description={item.description}
-                    img={item.image ? item.image.url : ""}
-                    onDelete={handleDeleteFromInitialCardsArr}
-                    onEdit={handleEditFromInitialCardsArr}
-                    onLike={handleLikeFromCards}
-                    canEdit={payload && (payload.biz || payload.isAdmin) && item.user_id == payload._id }
-                    canDelete={payload && (payload.isAdmin || (payload.biz && item.user_id == payload._id))}
-                    canLike={payload && !payload.isAdmin && !payload.biz && !payload.biz && !item.likes.includes(payload._id)}
-                /> : ""
-                }
+                <CardComponent
+                id={item._id}
+                title={item.title}
+                subTitle={item.subTitle}
+                description={item.description}
+                img={item.image ? item.image.url : ""}
+                onDelete={handleDeleteFromInitialCardsArr}
+                onEdit={handleEditFromInitialCardsArr}
+                onLike={handleLikeFromCards}
+                canEdit={payload && (payload.biz || payload.isAdmin) && item.user_id == payload._id }
+                canDelete={payload && (payload.isAdmin || (payload.biz && item.user_id == payload._id))}
+                canLike={payload && !payload.isAdmin && !payload.biz && !payload.biz && !item.likes.includes(payload._id)}
+                /> 
             </Grid>
             ))}
             <Grid item xs={10}></Grid>
