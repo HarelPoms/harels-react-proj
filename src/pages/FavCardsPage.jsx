@@ -22,7 +22,7 @@ const FavCardsPage = () => {
         useEffect cant handle async ()=>{}
         this is why we use the old promise way
         */
-        axios.get("/cards/my-cards")
+        axios.get("/cards/cards")
         .then(({ data }) => {
             filterFunc(data);
         })
