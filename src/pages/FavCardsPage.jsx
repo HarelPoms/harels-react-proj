@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import useQueryParams from "../hooks/useQueryParams";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Fragment } from "react";
 import Button from "@mui/material/Button";
 import AddIcon from '@mui/icons-material/Add';
 import ROUTES from "../routes/ROUTES";
@@ -44,9 +45,12 @@ const FavCardsPage = () => {
         /*
             when component loaded and states not loaded
         */
-        setOriginalCardsArr(data);
+        let favData = data.filter((card) => card.likes.includes(payload._id));
+        setOriginalCardsArr(favData);
         //console.log(data);
-        setCardsArr(data.filter((card) => card.title.startsWith(filter) || card.bizNumber.startsWith(filter)));
+        //setCardsArr(data.filter((card) => card.likes.includes(payload._id)));
+        setCardsArr(favData.filter((card) => card.title.startsWith(filter) || card.bizNumber.startsWith(filter)));
+        
         return;
         }
         if (originalCardsArr) {
@@ -54,6 +58,7 @@ const FavCardsPage = () => {
             when all loaded and states loaded
         */
         let newOriginalCardsArr = JSON.parse(JSON.stringify(originalCardsArr));
+        //setCardsArr(newOriginalCardsArr.filter((card) => card.likes.includes(payload._id)));
         setCardsArr(
             newOriginalCardsArr.filter((card) => card.title.startsWith(filter) || card.bizNumber.startsWith(filter))
         );
