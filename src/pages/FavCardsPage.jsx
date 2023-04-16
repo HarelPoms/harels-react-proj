@@ -10,7 +10,7 @@ import Button from "@mui/material/Button";
 import AddIcon from '@mui/icons-material/Add';
 import ROUTES from "../routes/ROUTES";
 
-const MyCardsPage = () => {
+const FavCardsPage = () => {
     const [originalCardsArr, setOriginalCardsArr] = useState(null);
     const [cardsArr, setCardsArr] = useState(null);
     const navigate = useNavigate();
@@ -82,7 +82,7 @@ const MyCardsPage = () => {
 
     const handleLikeFromCards = async (id) => {
         try {
-            let res = await axios.patch("/cards/card-like/"+ id);
+            await axios.patch("/cards/card-like/"+ id);
         } catch(err){
 
         }
@@ -99,19 +99,21 @@ const MyCardsPage = () => {
         <Grid container spacing={2}>
             {cardsArr.map((item) => (
             <Grid item xs={6} md={4} key={item._id + Date.now()}>
-                <CardComponent
-                id={item._id}
-                title={item.title}
-                subTitle={item.subTitle}
-                description={item.description}
-                img={item.image ? item.image.url : ""}
-                onDelete={handleDeleteFromInitialCardsArr}
-                onEdit={handleEditFromInitialCardsArr}
-                onLike={handleLikeFromCards}
-                canEdit={payload && (payload.biz || payload.isAdmin) && item.user_id == payload._id }
-                canDelete={payload && (payload.isAdmin || (payload.biz && item.user_id == payload._id))}
-                canLike={payload && !payload.isAdmin && !payload.biz && !payload.biz && !item.likes.includes(payload._id)}
-                />
+                {item.likes.includes(payload._id) ? 
+                    <CardComponent
+                    id={item._id}
+                    title={item.title}
+                    subTitle={item.subTitle}
+                    description={item.description}
+                    img={item.image ? item.image.url : ""}
+                    onDelete={handleDeleteFromInitialCardsArr}
+                    onEdit={handleEditFromInitialCardsArr}
+                    onLike={handleLikeFromCards}
+                    canEdit={payload && (payload.biz || payload.isAdmin) && item.user_id == payload._id }
+                    canDelete={payload && (payload.isAdmin || (payload.biz && item.user_id == payload._id))}
+                    canLike={payload && !payload.isAdmin && !payload.biz && !payload.biz && !item.likes.includes(payload._id)}
+                /> : ""
+                }
             </Grid>
             ))}
             <Grid item xs={10}></Grid>
@@ -126,4 +128,4 @@ const MyCardsPage = () => {
 };
 
 
-export default MyCardsPage;
+export default FavCardsPage;

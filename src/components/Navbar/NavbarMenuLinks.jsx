@@ -46,6 +46,8 @@ const bizPages = [
     {label: "Create", url:ROUTES.NEWCARD},
 ];
 
+const nonBizAndAdminPages  = [{label: "Favorite Cards", url: ROUTES.MYFAVS}];
+
 const NavbarMenuLinks = () => {
     const dispatch = useDispatch();
     const payload = useSelector((bigPie) => bigPie.authSlice.payload);
@@ -75,10 +77,13 @@ const NavbarMenuLinks = () => {
                 )
                 : notAuthPages.map((page) => (
                     <NavLinkComponent key={page.url} {...page} />
-                ))}
-                {payload && payload.biz ? bizPages.map((page) => (
-                    <NavLinkComponent key={page.url} {...page} />
-                )) : ""}
+        ))}
+        {payload && payload.biz ? bizPages.map((page) => (
+            <NavLinkComponent key={page.url} {...page} />
+        )) : ""}
+        {isLoggedIn ? nonBizAndAdminPages.map((page) => (
+            <NavLinkComponent key={page.url} {...page} />
+        )) : ""}
         </Fragment>
         );
 }

@@ -7,7 +7,8 @@ const ROUTES = {
   LOGOUT: "/logout",
   NEWCARD: "/new_card",
   FULLCARDDETAILS: "/full_details/:id",
-  MYCARDS: "/my_cards"
+  MYCARDS: "/my_cards",
+  MYFAVS: "/my_favs"
 };
 
 export default ROUTES;

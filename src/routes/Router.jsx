@@ -11,6 +11,7 @@ import LogoutPage from "../pages/LogoutPage";
 import NewCardPage from "../pages/NewCardPage";
 import FullDetailsCardPage from "../pages/FullDetailsCardPage";
 import MyCardsPage from "../pages/MyCardsPage";
+import FavCardsPage from "../pages/FavCardsPage"
 
 //element={<ProtectedRoute element={<LogoutPage />} />}
 
@@ -43,6 +44,9 @@ const Router = () => {
         path={ROUTES.PROFILE}
         element={<ProtectedRoute element={<ProfilePage />} />}
       />
+      <Route path="/my_favs" element={
+      <SuperProtectedRoute isAdmin={false} isBiz={false} element={<FavCardsPage />} />
+      } />
       <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
       <Route path="*" element={<h1>404</h1>} />
     </Routes>
