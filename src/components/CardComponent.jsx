@@ -16,6 +16,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import { useSelector } from "react-redux";
+import { useState } from "react";
+
 
 
 // const CardComponent = (props) => { - - - }
@@ -28,10 +30,12 @@ const CardComponent = ({
   onDelete,
   onEdit,
   onLike,
+  onDislike,
   canEdit,
   canDelete,
   canLike
 }) => {
+  const [likeDislikeOccured, setLikeDislikeOccured] = useState(false);
   const navigate = useNavigate();
   const isLoggedIn = useSelector((bigState) => bigState.authSlice.isLoggedIn);
 
@@ -43,9 +47,14 @@ const CardComponent = ({
   };
 
   const handleLikeBtnClick = () => {
+    setLikeDislikeOccured(!likeDislikeOccured);
     onLike(id);
   }
 
+  const handleDislikeBtnClick = () =>{
+    setLikeDislikeOccured(!likeDislikeOccured);
+    onDislike(id);
+  }
   const openDetailsPage = () => {
     navigate(`/full_details/${id}`);
   }
@@ -64,7 +73,7 @@ const CardComponent = ({
         <Button variant="text" color="primary" onClick={handleLikeBtnClick}>
           <FavoriteIcon />
         </Button> : 
-        <Button variant="text" color="primary" onClick={handleLikeBtnClick}>
+        <Button variant="text" color="primary" onClick={handleDislikeBtnClick}>
           <HeartBrokenIcon />
         </Button>
         }

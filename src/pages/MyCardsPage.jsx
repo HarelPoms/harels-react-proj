@@ -82,11 +82,21 @@ const MyCardsPage = () => {
 
     const handleLikeFromCards = async (id) => {
         try {
-            let res = await axios.patch("/cards/card-like/"+ id);
+            await axios.patch("/cards/card-like/"+ id);
+            toast.success("Added to Favorites");
         } catch(err){
-
+            toast.error("Failed to Favorite Card");
         }
-    } 
+    }
+
+    const handleDislikeFromCards = async (id) => {
+        try {
+            await axios.patch("/cards/card-like/"+ id);
+            toast.success("Removed from Favorites");
+        } catch(err){
+            toast.error("Failed to remove card from favorites");
+        }
+    }
     const handleCreateClick = () => {
         navigate(ROUTES.NEWCARD);
     } 
@@ -108,6 +118,7 @@ const MyCardsPage = () => {
                 onDelete={handleDeleteFromInitialCardsArr}
                 onEdit={handleEditFromInitialCardsArr}
                 onLike={handleLikeFromCards}
+                onDislike={handleDislikeFromCards}
                 canEdit={payload && (payload.biz || payload.isAdmin) && item.user_id == payload._id }
                 canDelete={payload && (payload.isAdmin || (payload.biz && item.user_id == payload._id))}
                 canLike={payload && !payload.isAdmin && !payload.biz && !payload.biz && !item.likes.includes(payload._id)}
