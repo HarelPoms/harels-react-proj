@@ -81,14 +81,7 @@ const HomePage = () => {
 
   const handleLikeFromCards = async (id) => {
     try {
-      let { data : cardBeingLiked } = await axios.get("/cards/card/" + id);
-      let newInputState = {
-          ...cardBeingLiked,
-        };
-      newInputState.likes = [...newInputState.likes, payload._id];
-      delete newInputState.__v;
-      delete newInputState.image;
-      await axios.put("/cards/" + id, newInputState); 
+      let res = await axios.patch("/cards/card-like/"+ id);
     } catch(err){
 
     }
@@ -114,7 +107,7 @@ const HomePage = () => {
               onLike={handleLikeFromCards}
               canEdit={payload && (payload.biz || payload.isAdmin) && item.user_id == payload._id }
               canDelete={payload && (payload.isAdmin || (payload.biz && item.user_id == payload._id))}
-              canLike={payload && !payload.isAdmin && !payload.biz}
+              canLike={payload && !payload.isAdmin && !payload.biz && !item.likes.includes(payload._id)}
             />
           </Grid>
         ))}

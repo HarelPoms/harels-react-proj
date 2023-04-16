@@ -23,7 +23,7 @@ const InputComponent = ({id, label, inputState, inputsErrorsState, handleInputCh
         {inputsErrorsState && inputsErrorsState[id] && (
         <Alert severity="warning">
             {inputsErrorsState[id].map((item) => (
-            <div key={"firstName-errors" + item}>{item}</div>
+            <div key={`${label}-errors` + item}>{item}</div>
             ))}
         </Alert>
         )}
