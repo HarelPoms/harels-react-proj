@@ -31,7 +31,8 @@ const CardComponent = ({
   onDislike,
   canEdit,
   canDelete,
-  canLike
+  canLike,
+  userType
 }) => {
   const [likePossible, setLikePossible] = useState(canLike);
   const isLoggedIn = useSelector((bigState) => bigState.authSlice.isLoggedIn);
@@ -58,6 +59,10 @@ const CardComponent = ({
     navigate(`/full_details/${id}`);
   }
 
+  const checkUserIsNotAdminOrBiz = (arr) => {
+    return arr.every(element => element === false);
+  }
+
   return (
     <Card square raised>
       <CardActionArea onClick={openDetailsPage}>
@@ -68,13 +73,13 @@ const CardComponent = ({
         <Typography>{description}</Typography>
       </CardContent>
       <CardActions>
-        {likePossible ? 
+        {likePossible && checkUserIsNotAdminOrBiz(userType) ? 
         <Button variant="text" color="primary" onClick={handleLikeBtnClick}>
           <FavoriteIcon />
-        </Button> : 
+        </Button> : checkUserIsNotAdminOrBiz(userType) ? 
         <Button variant="text" color="primary" onClick={handleDislikeBtnClick}>
           <HeartBrokenIcon />
-        </Button>
+        </Button> : ""
         }
         {canEdit ? (
           <Fragment>
