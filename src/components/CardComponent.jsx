@@ -15,12 +15,8 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
-import { useSelector } from "react-redux";
 import { useState } from "react";
 
-
-
-// const CardComponent = (props) => { - - - }
 const CardComponent = ({
   img,
   title,
@@ -35,9 +31,8 @@ const CardComponent = ({
   canDelete,
   canLike
 }) => {
-  const [likeDislikeOccured, setLikeDislikeOccured] = useState(false);
+  const [likePossible, setLikePossible] = useState(canLike);
   const navigate = useNavigate();
-  const isLoggedIn = useSelector((bigState) => bigState.authSlice.isLoggedIn);
 
   const handleDeleteBtnClick = () => {
     onDelete(id);
@@ -47,12 +42,12 @@ const CardComponent = ({
   };
 
   const handleLikeBtnClick = () => {
-    setLikeDislikeOccured((oldVal) => !oldVal);
+    setLikePossible(!likePossible);
     onLike(id);
   }
 
   const handleDislikeBtnClick = () =>{
-    setLikeDislikeOccured((oldVal) => !oldVal);
+    setLikePossible(!likePossible);
     onDislike(id);
   }
   const openDetailsPage = () => {
@@ -69,7 +64,7 @@ const CardComponent = ({
         <Typography>{description}</Typography>
       </CardContent>
       <CardActions>
-        {canLike ? 
+        {likePossible ? 
         <Button variant="text" color="primary" onClick={handleLikeBtnClick}>
           <FavoriteIcon />
         </Button> : 
