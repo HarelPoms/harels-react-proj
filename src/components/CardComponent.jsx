@@ -16,6 +16,8 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import PhoneIcon from '@mui/icons-material/Phone';
 
 const CardComponent = ({
   img,
@@ -32,6 +34,8 @@ const CardComponent = ({
   canLike
 }) => {
   const [likePossible, setLikePossible] = useState(canLike);
+  const isLoggedIn = useSelector((bigState) => bigState.authSlice.isLoggedIn);
+
   const navigate = useNavigate();
 
   const handleDeleteBtnClick = () => {
@@ -88,6 +92,7 @@ const CardComponent = ({
             </Button>
           </Fragment>
         ) : ("")}
+      {!isLoggedIn ? <PhoneIcon /> : ""}
       </CardActions>
     </Card>
   );

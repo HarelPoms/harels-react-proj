@@ -15,7 +15,7 @@ import ROUTES from "../routes/ROUTES";
 import validateLoginSchema from "../validation/loginValidation";
 import useLoggedIn from "../hooks/useLoggedIn";
 import { validateLoginFieldFromSchema } from "../validation/loginValidation";
-
+import useResponsiveQueries from "../hooks/useResponsiveQueries";
 
 const LoginPage = () => {
   const [inputState, setInputState] = useState({
@@ -52,7 +52,7 @@ const LoginPage = () => {
     setInputsErrorsState(newErrorState);
   };
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth={`${useResponsiveQueries()}`}>
       <Box
         sx={{
           marginTop: 8,
