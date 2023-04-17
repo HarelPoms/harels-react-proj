@@ -47,12 +47,12 @@ const CardComponent = ({
   };
 
   const handleLikeBtnClick = () => {
-    setLikeDislikeOccured(!likeDislikeOccured);
+    setLikeDislikeOccured((oldVal) => !oldVal);
     onLike(id);
   }
 
   const handleDislikeBtnClick = () =>{
-    setLikeDislikeOccured(!likeDislikeOccured);
+    setLikeDislikeOccured((oldVal) => !oldVal);
     onDislike(id);
   }
   const openDetailsPage = () => {
