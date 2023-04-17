@@ -94,6 +94,7 @@ const FavCardsPage = () => {
     const handleDislikeFromCards = async (id) => {
         try {
             await axios.patch("/cards/card-like/"+ id);
+            setCardsArr((newCardsArr) => newCardsArr.filter((card) => card._id != id));
             toast.success("Removed from Favorites");
         } catch(err){
             toast.error("Failed to remove card from favorites");
