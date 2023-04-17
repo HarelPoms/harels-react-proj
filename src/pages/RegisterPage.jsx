@@ -10,13 +10,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-
 import validateRegisterSchema from "../validation/registerValidation";
 import { validateRegisterFieldFromSchema } from "../validation/registerValidation";
 import ROUTES from "../routes/ROUTES";
 import InputComponent from "../components/InputComponent";
 import CancelButtonComponent from "../components/CancelButtonComponent";
 import RefreshButtonComponent from "../components/RefreshButtonComponent";
+import useResponsiveQueries from "../hooks/useResponsiveQueries";
 
 const RegisterPage = () => {
   const startingInputVal = {
@@ -76,7 +76,7 @@ const RegisterPage = () => {
     setInputsErrorsState(startingInputErrVal);
   }
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth={`${useResponsiveQueries()}`}>
       <Box
         sx={{
           marginTop: 8,
