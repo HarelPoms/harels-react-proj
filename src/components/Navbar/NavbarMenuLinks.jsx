@@ -11,6 +11,10 @@ const pages = [
         label: "Home",
         url: ROUTES.HOME,
     },
+    {
+        label: "About Us",
+        url: ROUTES.ABOUT
+    }
 ];
 
 //not logged in users

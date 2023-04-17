@@ -12,8 +12,7 @@ import NewCardPage from "../pages/NewCardPage";
 import FullDetailsCardPage from "../pages/FullDetailsCardPage";
 import MyCardsPage from "../pages/MyCardsPage";
 import FavCardsPage from "../pages/FavCardsPage"
-
-//element={<ProtectedRoute element={<LogoutPage />} />}
+import AboutPage from "../pages/AboutPage"
 
 const Router = () => {
   return (
@@ -48,6 +47,7 @@ const Router = () => {
       <SuperProtectedRoute isAdmin={false} isBiz={false} element={<FavCardsPage />} />
       } />
       <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
+      <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path="*" element={<h1>404</h1>} />
     </Routes>
   );
