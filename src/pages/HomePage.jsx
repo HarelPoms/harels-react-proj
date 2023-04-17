@@ -45,7 +45,6 @@ const HomePage = () => {
         when component loaded and states not loaded
       */
       setOriginalCardsArr(data);
-      //console.log(data);
       setCardsArr(data.filter((card) => card.title.startsWith(filter) || card.bizNumber.startsWith(filter)));
       return;
     }
