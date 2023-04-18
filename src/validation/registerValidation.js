@@ -8,7 +8,7 @@ import validateFieldFromSchema from "./validateFieldFromSchemaUtil"
 const registerSchema = Joi.object({
   firstName: Joi.string().min(2).max(100).required().messages(generateMessages("First Name", [2,100], 0,
   [1,1,1])),
-  middleName: Joi.string().min(2).max(100).required().allow("").messages(generateMessages("Middle Name", [2,100], 0,
+  middleName: Joi.string().min(6).max(100).required().allow("").messages(generateMessages("Middle Name", [6,100], 0,
   [1,1,1])),
   lastName: Joi.string().min(2).max(100).required().messages(generateMessages("Last Name", [2,100], 0,
   [1,1,1])),

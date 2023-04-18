@@ -111,7 +111,8 @@ const FavCardsPage = () => {
         <Box>
         <Typography variant="h1"> My Favorite Cards Page </Typography>
         <Typography variant="h3"> Cards I've favorited </Typography>
-        <Divider> My Favorited Cards </Divider>
+        {cardsArr && cardsArr.length === 0 && <Divider> You have no favorite cards </Divider>}
+        {cardsArr && cardsArr.length > 0 && <Divider> My Favorited Cards </Divider>}
         <Grid container spacing={2}>
             {cardsArr.map((item) => (
             <Grid item xs={6} md={4} key={item._id + Date.now()}>

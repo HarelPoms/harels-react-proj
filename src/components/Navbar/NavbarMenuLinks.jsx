@@ -85,7 +85,7 @@ const NavbarMenuLinks = () => {
         {payload && payload.biz ? bizPages.map((page) => (
             <NavLinkComponent key={page.url} {...page} />
         )) : ""}
-        {isLoggedIn ? nonBizAndAdminPages.map((page) => (
+        {isLoggedIn && !payload.isAdmin && !payload.biz ? nonBizAndAdminPages.map((page) => (
             <NavLinkComponent key={page.url} {...page} />
         )) : ""}
         </Fragment>
