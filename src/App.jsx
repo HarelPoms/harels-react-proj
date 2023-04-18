@@ -41,6 +41,7 @@ function App() {
   const [value, setValue] = useState(0);
   const navigate = useNavigate();
   const loggedIn = useLoggedIn();
+  const payload = useSelector((bigPie) => bigPie.authSlice.payload);
   useEffect(() => {
     (async () => {
       await loggedIn();
@@ -90,8 +91,8 @@ function App() {
               }}
             >
               <BottomNavigationAction label="About" icon={<InfoIcon />} onClick={handleToAboutClick}/>
-              <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} onClick={handleToFavsClick}/>
-              <BottomNavigationAction label="My Cards" icon={<AttributionIcon />} onClick={handleToMyCardsClick}/>
+              {payload && !payload.isAdmin && !payload.biz && <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} onClick={handleToFavsClick}/>}
+              {payload && (payload.isAdmin || payload.biz) && <BottomNavigationAction label="My Cards" icon={<AttributionIcon />} onClick={handleToMyCardsClick}/>}
             </BottomNavigation>
           </Box>
         </footer>
