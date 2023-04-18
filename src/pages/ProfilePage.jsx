@@ -8,12 +8,12 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import validateRegisterSchema from "../validation/registerValidation";
-import { validateRegisterFieldFromSchema } from "../validation/registerValidation";
+import validateProfileSchema from "../validation/profileValidation";
+import { validateProfileFieldFromSchema } from "../validation/profileValidation";
 import ROUTES from "../routes/ROUTES";
 import InputComponent from "../components/InputComponent";
 import CancelButtonComponent from "../components/CancelButtonComponent";
@@ -27,7 +27,6 @@ const ProfilePage = () => {
     lastName: "",
     phone: "",
     email: "",
-    password: "",
     imageUrl: "",
     imageAlt: "",
     state: "",
@@ -45,14 +44,13 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const handleBtnClick = async (ev) => {
     try {
-      const joiResponse = validateRegisterSchema(inputState);
-      console.log(joiResponse);
+      const joiResponse = validateProfileSchema(inputState);
       setInputsErrorsState(joiResponse);
       if (joiResponse) {
         return;
       }
-      await axios.post("/users/register", inputState);
-      navigate(ROUTES.LOGIN);
+      await axios.put("users/userInfo", inputState);
+      navigate(ROUTES.HOME);
     } catch (err) {
       console.log("error from axios", err.response.data);
     }
@@ -61,7 +59,7 @@ const ProfilePage = () => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
     newInputState[ev.target.id] = ev.target.value;
     setInputState(newInputState);
-    let fieldValidationResult = validateRegisterFieldFromSchema(ev.target.value, ev.target.id);
+    let fieldValidationResult = validateProfileFieldFromSchema(ev.target.value, ev.target.id);
     let newErrorState = JSON.parse(JSON.stringify(inputsErrorsState));
     newErrorState[ev.target.id] = fieldValidationResult[ev.target.id];
     setInputsErrorsState(newErrorState);
@@ -82,20 +80,25 @@ const ProfilePage = () => {
         (async () => {
         try{
             const {data} = await axios.get("/users/userInfo");
-            console.log(data);
+            let newInputState = {
+                ...data
+              };
             if(!data){
                 navigate(ROUTES.PAGENOTFOUND);
                 return;
             }
-            //setInputState(redactedData);
+            delete newInputState._id;
+            delete newInputState.isAdmin;
+            setInputState(newInputState);
         }
         catch(err){
             console.log(err);
-            toast.error("Oops");
+            toast.error("Failed to load Profile data");
         }
         })();
         
     }, []);
+
   return (
     <Container component="main" maxWidth={`${useResponsiveQueries()}`}>
       <Box
@@ -119,7 +122,6 @@ const ProfilePage = () => {
             <InputComponent id="lastName" label="Last Name" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
             <InputComponent id="phone" label="Phone" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
             <InputComponent id="email" label="Email" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} />
-            <InputComponent id="password" label="Password" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} isRequired={true} inputType="password" />
             <InputComponent id="imageUrl" label="Image Url" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
             <InputComponent id="imageAlt" label="Image Alt" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
             <InputComponent id="state" label="State" inputState={inputState} inputsErrorsState={inputsErrorsState} handleInputChange={handleInputChange} />
@@ -148,17 +150,8 @@ const ProfilePage = () => {
             sx={{ mt: 3, mb: 2 }}
             onClick={handleBtnClick}
           >
-            Register
+            Update Profile
           </Button>
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Link to={ROUTES.LOGIN}>
-                <Typography variant="body2">
-                  Already have an account?
-                </Typography>
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
     </Container>

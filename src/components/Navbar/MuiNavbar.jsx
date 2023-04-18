@@ -78,7 +78,7 @@ const MuiNavbar = () => {
               {isDarkTheme && isSearchUnfocused ? <DarkModeIcon onClick={changeTheme} /> :
               isSearchUnfocused ?
               <LightModeIcon onClick={changeTheme}/> : ""}
-              {isLoggedIn && isSearchUnfocused ? <Avatar alt="profile pic" src="https://cdn-icons-png.flaticon.com/128/1077/1077114.png" /> : ""}
+              {isLoggedIn && isSearchUnfocused ? <Avatar alt="profile pic" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" /> : ""}
             </Box>
             
           </Box>

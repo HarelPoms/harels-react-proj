@@ -33,6 +33,24 @@ const AboutPage = () => {
                 <Grid item xs={6} sm={6} md={6} >
                     <Img alt="test" src={require("../assets/images/CardPreview2.PNG")} />
                 </Grid>
+                {/* Row Three */}
+                <Grid item xs={5} sm={5} sx={{ml:1}}>
+                    <Typography sx={{bgcolor:"limegreen"}}>
+                        This is right side of the navbar, here you may switch between light mode and dark mode, as well as search for particular items by business number or by title.
+                    </Typography>
+                </Grid>
+                <Grid item xs={6} sm={6} md={6} >
+                    <Img alt="test" src={require("../assets/images/RightSideOfNavbar.PNG")} />
+                </Grid>
+                {/* Row Four */}
+                <Grid item xs={5} sm={5} sx={{ml:1}}>
+                    <Typography sx={{bgcolor:"limegreen"}}>
+                        This is left side of the navbar, here you may perform any number of actions or access pages available to you on the basis of your user's permissions
+                    </Typography>
+                </Grid>
+                <Grid item xs={6} sm={6} md={6} >
+                    <Img alt="test" src={require("../assets/images/LeftSideOfNavbar.PNG")} />
+                </Grid>
             </Grid>
         </Box>
     );
