@@ -26,7 +26,7 @@ const editCardSchema = Joi.object({
   [1,1,1])),
   email: Joi.string().min(5).max(255).required().email({ tlds: { allow: false } }).messages(generateMessages("Email", [5,255], 0,
   [1,1,1])),
-  web: Joi.string().min(5).max(255).allow("").messages(generateMessages("Web", [2,255], 0,
+  web: Joi.string().min(5).max(255).allow("").messages(generateMessages("Web", [5,255], 0,
   [1,1])),
   url: Joi.string().min(6).max(1024).allow("").messages(generateMessages("URL", [6,1024], 0,
   [1,1])),
