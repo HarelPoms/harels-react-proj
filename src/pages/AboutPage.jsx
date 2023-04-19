@@ -2,6 +2,7 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { styled } from '@mui/material/styles';
 import Typography from "@mui/material/Typography";
+import { Divider } from "@mui/material";
 
 const Img = styled('img')({
     margin: 'auto',
@@ -13,6 +14,8 @@ const Img = styled('img')({
 const AboutPage = () => {
     return(
         <Box component="div" noValidate sx={{ mt: 3 }}>
+            <Typography variant="h2">This page contains user instructions</Typography>
+            <Divider>How to's</Divider>
             <Grid container spacing={2}>
                 {/* Row one */}
                 <Grid item xs={5} sm={5} sx={{mt:5, ml:1}}>
