@@ -54,8 +54,8 @@ const AboutPage = () => {
                 {/* Row Five */}
                 <Grid item xs={5} sm={5} sx={{ml:1}}>
                     <Typography sx={{bgcolor:"limegreen"}}>
-                        This is the footer; My favorites is available to non admin/biz users.
-                        My Cards is available to biz/admin users. About is available to anyone.
+                        This is the footer; <br /> My favorites is available to non admin/biz users.
+                        <br />My Cards is available to biz/admin users.<br /> About is available to anyone.
                     </Typography>
                 </Grid>
                 <Grid item xs={6} sm={6} md={6} >
