@@ -1,9 +1,9 @@
 import NavLinkComponent from "./NavLinkComponent";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Fragment } from "react";
 
 import ROUTES from "../../routes/ROUTES";
-import { authActions } from "../../store/auth";
+import NavbarAuthNotAuthLinks from "./NavbarAuthNotAuthLinks";
 
 // access to all
 const pages = [
@@ -14,30 +14,6 @@ const pages = [
     {
         label: "About Us",
         url: ROUTES.ABOUT
-    }
-];
-
-//not logged in users
-const notAuthPages = [
-    {
-        label: "Register",
-        url: ROUTES.REGISTER,
-    },
-    {
-        label: "Login",
-        url: ROUTES.LOGIN,
-    },
-];
-
-//logged in users
-const authedPages = [
-    {
-        label: "Profile",
-        url: ROUTES.PROFILE,
-    },
-    {
-        label: "Logout",
-        url: ROUTES.LOGOUT,
     }
 ];
 
@@ -52,36 +28,19 @@ const bizPages = [
 
 const nonBizAndAdminPages  = [{label: "Favorite Cards", url: ROUTES.MYFAVS}];
 
-const NavbarMenuLinks = () => {
-    const dispatch = useDispatch();
+const NavbarMenuLinks = ({isMobile}) => {
     const payload = useSelector((bigPie) => bigPie.authSlice.payload);
     const isLoggedIn = useSelector(
     (bigPie) => bigPie.authSlice.isLoggedIn
     );
-
-    const logoutClick = () => {
-        localStorage.clear();
-        dispatch(authActions.logout());
-    };
 
     return (
         <Fragment>
         {pages.map((page) => (
             <NavLinkComponent key={page.url} {...page} />
         ))}
-        {isLoggedIn
-            ? authedPages.map((page) =>
-            page.url === ROUTES.LOGOUT ? (
-                <NavLinkComponent
-                    key={page.url}
-                    {...page}
-                    onClick={logoutClick}
-                    />) :
-                    (<NavLinkComponent key={page.url} {...page} />)
-                )
-                : notAuthPages.map((page) => (
-                    <NavLinkComponent key={page.url} {...page} />
-        ))}
+        {isMobile ? <NavbarAuthNotAuthLinks /> : 
+        ""}
         {payload && payload.biz ? bizPages.map((page) => (
             <NavLinkComponent key={page.url} {...page} />
         )) : ""}

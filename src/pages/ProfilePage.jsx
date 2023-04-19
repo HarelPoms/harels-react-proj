@@ -80,15 +80,18 @@ const ProfilePage = () => {
         (async () => {
         try{
             const {data} = await axios.get("/users/userInfo");
-            let newInputState = {
+            let inputFromServer = {
                 ...data
               };
             if(!data){
                 navigate(ROUTES.PAGENOTFOUND);
                 return;
             }
-            delete newInputState._id;
-            delete newInputState.isAdmin;
+            delete inputFromServer._id;
+            delete inputFromServer.isAdmin;
+            let newInputState = {...startingInputVal, ...inputFromServer};
+            if(!newInputState.zipCode) { newInputState.zipCode = "";}
+
             setInputState(newInputState);
         }
         catch(err){

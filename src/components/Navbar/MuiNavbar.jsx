@@ -18,10 +18,13 @@ import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
 import { darkThemeActions } from "../../store/darkTheme";
 import NavbarMenuLinks from "./NavbarMenuLinks";
+import NavbarAuthNotAuthLinks from "./NavbarAuthNotAuthLinks";
+import useResponsiveQueries from "../../hooks/useResponsiveQueries";
 
 const MuiNavbar = () => {
   const navigate = useNavigate();
   const [isSearchUnfocused, setIsSearchUnfocused] = useState(true);
+  const viewportSize = useResponsiveQueries();
   const isLoggedIn = useSelector(
     (bigPie) => bigPie.authSlice.isLoggedIn
   );
@@ -61,7 +64,7 @@ const MuiNavbar = () => {
           
           {/* main navbar */}
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <NavbarMenuLinks />
+            <NavbarMenuLinks isMobile={false}/>
           </Box>
           <SearchPartial handleSearchFocus={trackSearchUnfocused}/>
           <Box
@@ -79,6 +82,7 @@ const MuiNavbar = () => {
               isSearchUnfocused ?
               <LightModeIcon onClick={changeTheme}/> : ""}
               {isLoggedIn && isSearchUnfocused ? <Avatar alt="profile pic" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" /> : ""}
+              {isSearchUnfocused && viewportSize !== "xs" && viewportSize !== "sm" ? <NavbarAuthNotAuthLinks /> : ""}
             </Box>
             
           </Box>
@@ -116,7 +120,7 @@ const MuiNavbar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <NavbarMenuLinks />
+              <NavbarMenuLinks isMobile={true}/>
             </Menu>
           </Box> : ""}
           
