@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import Avatar from '@mui/material/Avatar';
+import axios from "axios";
 
 import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
@@ -25,6 +26,8 @@ const MuiNavbar = () => {
   const navigate = useNavigate();
   const [isSearchUnfocused, setIsSearchUnfocused] = useState(true);
   const viewportSize = useResponsiveQueries();
+  const [avatarURL,setAvatarURL] = useState("https://cdn-icons-png.flaticon.com/512/3135/3135715.png");
+  const payload = useSelector((bigPie) => bigPie.authSlice.payload); 
   const isLoggedIn = useSelector(
     (bigPie) => bigPie.authSlice.isLoggedIn
   );
@@ -53,6 +56,22 @@ const MuiNavbar = () => {
   const trackSearchUnfocused = () => {
     setIsSearchUnfocused(!isSearchUnfocused);
   }
+  useEffect(() => {
+        (async () => {
+        try{
+            if(payload){
+              const {data} = await axios.get("/users/userInfo");
+              if(data.imageUrl && data.imageUrl !== ""){
+                setAvatarURL(data.imageUrl);
+              }
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+        })();
+        
+    }, [payload]);
 
   return (
     <AppBar position="static">
@@ -81,7 +100,7 @@ const MuiNavbar = () => {
               {isDarkTheme && isSearchUnfocused ? <DarkModeIcon onClick={changeTheme} /> :
               isSearchUnfocused ?
               <LightModeIcon onClick={changeTheme}/> : ""}
-              {isLoggedIn && isSearchUnfocused ? <Avatar alt="profile pic" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" /> : ""}
+              {isLoggedIn && isSearchUnfocused ? <Avatar alt="Profile Pic" src={avatarURL} /> : ""}
               {isSearchUnfocused && viewportSize !== "xs" && viewportSize !== "sm" ? <NavbarAuthNotAuthLinks /> : ""}
             </Box>
             
