@@ -20,7 +20,7 @@ const editCardSchema = Joi.object({
   [1,1,1])),
   houseNumber: Joi.string().min(1).max(256).required().messages(generateMessages("House Number", [1,256], 0,
   [1,1,1])),
-  zipCode: Joi.number().min(1).max(256).allow("").messages(generateMessages("Zip Code", [1,256], 1,
+  zipCode: Joi.number().min(1).max(99999999).allow("").messages(generateMessages("Zip Code", [1,99999999], 1,
   [1,1,1])),
   phone: Joi.string().min(9).max(14).required().messages(generateMessages("Phone", [9,14], 0,
   [1,1,1])),
@@ -30,7 +30,7 @@ const editCardSchema = Joi.object({
   [1,1])),
   url: Joi.string().min(6).max(1024).allow("").messages(generateMessages("URL", [6,1024], 0,
   [1,1])),
-  alt: Joi.string().min(2).max(256).allow("").messages(generateMessages("URL", [2,256], 0,
+  alt: Joi.string().min(2).max(256).allow("").messages(generateMessages("ALT", [2,256], 0,
   [1,1])),
 });
 
