@@ -49,7 +49,9 @@ const Router = () => {
       } />
       <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
-      <Route path={ROUTES.SANDBOX} element={<SuperProtectedRoute isAdmin={true} isBiz={false} element={<SandboxPage />} />} />
+      <Route path={ROUTES.SANDBOX} element={<SuperProtectedRoute isAdmin={true} isBiz={false} element={<SandboxPage />} />} > 
+      
+      </Route>
       <Route path="*" element={<h1>404</h1>} />
     </Routes>
   );
