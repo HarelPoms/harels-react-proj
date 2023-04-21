@@ -46,10 +46,17 @@ const LoginPage = () => {
   };
   const handleInputChange = (ev) => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
+    let inputErrorsStateToValidate;
     newInputState[ev.target.id] = ev.target.value;
     setInputState(newInputState);
     let fieldValidationResult = validateLoginFieldFromSchema(ev.target.value, ev.target.id);
-    let newErrorState = JSON.parse(JSON.stringify(inputsErrorsState));
+    if(!inputsErrorsState){
+      inputErrorsStateToValidate = {};
+    }
+    else{
+      inputErrorsStateToValidate = inputsErrorsState;
+    }
+    let newErrorState = JSON.parse(JSON.stringify(inputErrorsStateToValidate));
     newErrorState[ev.target.id] = fieldValidationResult[ev.target.id];
     setInputsErrorsState(newErrorState);
   };
