@@ -13,6 +13,7 @@ import FullDetailsCardPage from "../pages/FullDetailsCardPage";
 import MyCardsPage from "../pages/MyCardsPage";
 import FavCardsPage from "../pages/FavCardsPage"
 import AboutPage from "../pages/AboutPage"
+import SandboxPage from "../pages/SandboxPage"
 
 const Router = () => {
   return (
@@ -48,6 +49,7 @@ const Router = () => {
       } />
       <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
+      <Route path={ROUTES.SANDBOX} element={<SuperProtectedRoute isAdmin={true} isBiz={false} element={<SandboxPage />} />} />
       <Route path="*" element={<h1>404</h1>} />
     </Routes>
   );

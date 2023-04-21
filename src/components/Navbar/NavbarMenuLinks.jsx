@@ -26,6 +26,10 @@ const bizPages = [
     }
 ];
 
+const adminPages = [
+    {label: "Sandbox", url: ROUTES.SANDBOX}
+]
+
 const nonBizAndAdminPages  = [{label: "Favorite Cards", url: ROUTES.MYFAVS}];
 
 const NavbarMenuLinks = ({isMobile}) => {
@@ -42,6 +46,9 @@ const NavbarMenuLinks = ({isMobile}) => {
         {isMobile ? <NavbarAuthNotAuthLinks /> : 
         ""}
         {payload && payload.biz ? bizPages.map((page) => (
+            <NavLinkComponent key={page.url} {...page} />
+        )) : ""}
+        {payload && payload.isAdmin ? adminPages.map((page) => (
             <NavLinkComponent key={page.url} {...page} />
         )) : ""}
         {isLoggedIn && !payload.isAdmin && !payload.biz ? nonBizAndAdminPages.map((page) => (
