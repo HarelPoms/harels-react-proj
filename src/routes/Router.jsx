@@ -14,6 +14,12 @@ import MyCardsPage from "../pages/MyCardsPage";
 import FavCardsPage from "../pages/FavCardsPage"
 import AboutPage from "../pages/AboutPage"
 import SandboxPage from "../pages/SandboxPage"
+import NestedRoutePage from "../pages/SandboxPages/NestedRoutePages/NestedRoutePage";
+import NestedPage1 from "../pages/SandboxPages/NestedRoutePages/NestedPage1";
+import NestedPage2 from "../pages/SandboxPages/NestedRoutePages/NestedPage2";
+import RP1 from "../pages/SandboxPages/RP1";
+import RP2 from "../pages/SandboxPages/RP2";
+import ReRenderPage from "../pages/SandboxPages/ReRenderPage/ReRenderPage";
 
 const Router = () => {
   return (
@@ -50,7 +56,10 @@ const Router = () => {
       <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.SANDBOX} element={<SuperProtectedRoute isAdmin={true} isBiz={false} element={<SandboxPage />} />} > 
-      
+        <Route path="nr" element={<NestedRoutePage />} />
+        <Route path="rrp" element={<ReRenderPage />} />
+        <Route path="rp1" element={<RP1 />} />
+        <Route path="rp2" element={<RP2 />} />
       </Route>
       <Route path="*" element={<h1>404</h1>} />
     </Routes>
