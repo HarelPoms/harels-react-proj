@@ -56,7 +56,10 @@ const Router = () => {
       <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.SANDBOX} element={<SuperProtectedRoute isAdmin={true} isBiz={false} element={<SandboxPage />} />} > 
-        <Route path="nr" element={<NestedRoutePage />} />
+        <Route path="nr" element={<NestedRoutePage />} >
+          <Route path="nestedpage1" element={<NestedPage1 />} />
+          <Route path="nestedpage2" element={<NestedPage2 />} />
+        </Route>
         <Route path="rrp" element={<ReRenderPage />} />
         <Route path="rp1" element={<RP1 />} />
         <Route path="rp2" element={<RP2 />} />
