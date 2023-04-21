@@ -10,6 +10,7 @@ import Container from "@mui/material/Container";
 import Alert from "@mui/material/Alert";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import ROUTES from "../routes/ROUTES";
 import validateLoginSchema from "../validation/loginValidation";
@@ -40,6 +41,7 @@ const LoginPage = () => {
       navigate(ROUTES.HOME);
     } catch (err) {
       console.log("login error", err);
+      toast.error("Username/Password are Incorrect/Don't exist");
     }
   };
   const handleInputChange = (ev) => {

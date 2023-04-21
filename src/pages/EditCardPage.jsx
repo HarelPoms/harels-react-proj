@@ -78,6 +78,7 @@ const EditCardPage = () => {
       //console.log(joiResponse);
       if (!joiResponse) {
         await axios.put("/cards/" + id, inputState);
+        setTimeout(toast.success("Edit Saved Succesfully"),3000);
         navigate(ROUTES.HOME);
       }
     } catch (err) {
