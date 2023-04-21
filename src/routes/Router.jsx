@@ -34,7 +34,7 @@ const Router = () => {
       />
       <Route path={ROUTES.MYCARDS} element={<ProtectedRoute element={<MyCardsPage />} />} />
       <Route path="/new_card" element={
-      <SuperProtectedRoute isAdmin={false} isBiz={true} element={<NewCardPage />} />
+      <SuperProtectedRoute isAdmin={false} isBiz={true} isBizOrAdmin={true} element={<NewCardPage />} />
       } />
       <Route
         path="/edit/:id"
@@ -42,6 +42,7 @@ const Router = () => {
           <SuperProtectedRoute
             isAdmin={true}
             isBiz={true}
+            isBizOrAdmin={true}
             element={<EditCardPage />}
           />
         }
@@ -51,11 +52,11 @@ const Router = () => {
         element={<ProtectedRoute element={<ProfilePage />} />}
       />
       <Route path="/my_favs" element={
-      <SuperProtectedRoute isAdmin={false} isBiz={false} element={<FavCardsPage />} />
+      <SuperProtectedRoute element={<FavCardsPage />} />
       } />
       <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
-      <Route path={ROUTES.SANDBOX} element={<SuperProtectedRoute isAdmin={true} isBiz={false} element={<SandboxPage />} />} > 
+      <Route path={ROUTES.SANDBOX} element={<SuperProtectedRoute isAdmin={true} isBiz={false} isBizOrAdmin={true} element={<SandboxPage />} />} > 
         <Route path="nr" element={<NestedRoutePage />} >
           <Route path="nestedpage1" element={<NestedPage1 />} />
           <Route path="nestedpage2" element={<NestedPage2 />} />
