@@ -10,8 +10,6 @@ const SuperProtectedRoute = ({ element, isAdmin, isBiz }) => {
   const payload = useSelector((bigState) => bigState.authSlice.payload);
   //* html section
   if (isLoggedIn) {
-    console.log(isBiz);
-    console.log(payload.biz);
     if (
       (payload && payload.isAdmin && isAdmin) ||
       (payload && payload.biz && isBiz)
