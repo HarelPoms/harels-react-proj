@@ -25,6 +25,7 @@ const RP1 = () => {
 
   return (
     <Fragment>
+      <h2>Redux Page 1</h2>
       <button onClick={handleAdd1}>+1</button>
       <button onClick={handleSub1}>-1</button>
       <input type="text" value={txt} onChange={handleInputChange} />
