@@ -21,7 +21,7 @@ const SuperProtectedRoute = ({ element, isAdmin, isBiz, isBizOrAdmin }) => {
     if(isBizOrAdmin && adminOrBizCheck()){
       return element;
     }
-    else if (regularUserCheck()){
+    else if (!isBizOrAdmin && regularUserCheck()){
       return element;
     }
   }
