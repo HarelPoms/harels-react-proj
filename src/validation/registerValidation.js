@@ -35,7 +35,7 @@ const registerSchema = Joi.object({
   [1,1,1])),
   houseNumber: Joi.string().min(1).max(256).required().messages(generateMessages("House Number", [1,256], 0,
   [1,1,1])),
-  zipCode: Joi.number().min(2).max(256).allow("").messages(generateMessages("Zip Code", [2,256], 1,
+  zipCode: Joi.number().min(1).max(99999999).allow("").messages(generateMessages("Zip Code", [1,99999999], 1,
   [1,1,1])),
   biz: Joi.boolean(),
 });
