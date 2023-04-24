@@ -4,23 +4,22 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Divider from '@mui/material/Divider';
 
-import CardComponent from "../components/CardComponent";
 import { toast } from "react-toastify";
 import useQueryParams from "../hooks/useQueryParams";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import CardComponent from "../components/CardComponent";
+import {searchTrackerActions} from "../store/searchPageTracker";
 
 const HomePage = () => {
   const [originalCardsArr, setOriginalCardsArr] = useState(null);
   const [cardsArr, setCardsArr] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   let qparams = useQueryParams();
   const payload = useSelector((bigPie) => bigPie.authSlice.payload);
 
   useEffect(() => {
-    /*
-      useEffect cant handle async ()=>{}
-      this is why we use the old promise way
-    */
+    dispatch(searchTrackerActions.homeSearch());
     axios
       .get("/cards/cards")
       .then(({ data }) => {

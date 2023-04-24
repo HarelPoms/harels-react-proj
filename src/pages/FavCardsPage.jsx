@@ -1,6 +1,6 @@
 import { Box, CircularProgress, Grid, Typography } from "@mui/material";
 import CardComponent from "../components/CardComponent";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useQueryParams from "../hooks/useQueryParams";
@@ -10,20 +10,19 @@ import Divider from '@mui/material/Divider';
 import Button from "@mui/material/Button";
 import AddIcon from '@mui/icons-material/Add';
 import ROUTES from "../routes/ROUTES";
+import {searchTrackerActions} from "../store/searchPageTracker";
 
 const FavCardsPage = () => {
     const [originalCardsArr, setOriginalCardsArr] = useState(null);
     const [cardsArr, setCardsArr] = useState(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     let qparams = useQueryParams();
     const payload = useSelector((bigPie) => bigPie.authSlice.payload);
 
     useEffect(() => {
-        /*
-        useEffect cant handle async ()=>{}
-        this is why we use the old promise way
-        */
-        axios.get("/cards/cards")
+        dispatch(searchTrackerActions.favoritesSearch());
+        axios.get("/cards/get-my-fav-cards")
         .then(({ data }) => {
             filterFunc(data);
         })
@@ -45,9 +44,9 @@ const FavCardsPage = () => {
         /*
             when component loaded and states not loaded
         */
-        let favData = data.filter((card) => card.likes.includes(payload._id));
-        setOriginalCardsArr(favData);
-        setCardsArr(favData.filter((card) => card.title.startsWith(filter) || card.bizNumber.startsWith(filter)));
+        //let favData = data.filter((card) => card.likes.includes(payload._id));
+        setOriginalCardsArr(data);
+        setCardsArr(data.filter((card) => card.title.startsWith(filter) || card.bizNumber.startsWith(filter)));
         
         return;
         }

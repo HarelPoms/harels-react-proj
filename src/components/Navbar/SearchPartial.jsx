@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { useSelector } from "react-redux";
 import ROUTES from "../../routes/ROUTES";
 
 const Search = styled("div")(({ theme }) => ({
@@ -50,12 +51,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const SearchPartial = ({handleSearchFocus}) => {
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
+  const currPage = useSelector((bigPie) => bigPie.searchSlice.currentPage);
   const handleSearchChange = (e) => {
     setSearchInput(e.target.value);
   };
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    navigate(`${ROUTES.HOME}?filter=${searchInput}`);
+    navigate(`${currPage}?filter=${searchInput}`);
   };
   const handleClickSearch =() =>{
     handleSearchFocus();

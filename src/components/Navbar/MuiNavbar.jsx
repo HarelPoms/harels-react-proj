@@ -21,6 +21,7 @@ import { darkThemeActions } from "../../store/darkTheme";
 import NavbarMenuLinks from "./NavbarMenuLinks";
 import NavbarAuthNotAuthLinks from "./NavbarAuthNotAuthLinks";
 import useResponsiveQueries from "../../hooks/useResponsiveQueries";
+import NavProfileMenuComponent from "./NavProfileMenuComponent";
 
 const MuiNavbar = () => {
   const navigate = useNavigate();
@@ -56,6 +57,7 @@ const MuiNavbar = () => {
   const trackSearchUnfocused = () => {
     setIsSearchUnfocused(!isSearchUnfocused);
   }
+
   useEffect(() => {
         (async () => {
         try{
@@ -97,10 +99,11 @@ const MuiNavbar = () => {
               alignItems: 'center',
               flexWrap: 'wrap',
             }}>
+              {/* <Avatar alt="Profile Pic" src={avatarURL} /> */}
               {isDarkTheme && isSearchUnfocused ? <DarkModeIcon onClick={changeTheme} /> :
               isSearchUnfocused ?
               <LightModeIcon onClick={changeTheme}/> : ""}
-              {isLoggedIn && isSearchUnfocused ? <Avatar alt="Profile Pic" src={avatarURL} /> : ""}
+              {isLoggedIn && isSearchUnfocused ? <NavProfileMenuComponent picSrc={avatarURL} /> : ""}
               {isSearchUnfocused && viewportSize !== "xs" && viewportSize !== "sm" ? <NavbarAuthNotAuthLinks /> : ""}
             </Box>
             
