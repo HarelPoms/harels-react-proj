@@ -25,9 +25,10 @@ import NavProfileMenuComponent from "./NavProfileMenuComponent";
 
 const MuiNavbar = () => {
   const navigate = useNavigate();
+  const defaultAvatar = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
   const [isSearchUnfocused, setIsSearchUnfocused] = useState(true);
   const viewportSize = useResponsiveQueries();
-  const [avatarURL,setAvatarURL] = useState("https://cdn-icons-png.flaticon.com/512/3135/3135715.png");
+  const [avatarURL,setAvatarURL] = useState(defaultAvatar);
   const payload = useSelector((bigPie) => bigPie.authSlice.payload); 
   const isLoggedIn = useSelector(
     (bigPie) => bigPie.authSlice.isLoggedIn
@@ -58,14 +59,24 @@ const MuiNavbar = () => {
     setIsSearchUnfocused(!isSearchUnfocused);
   }
 
+  const checkValidURLImage = (url) => {
+    let suffixes = ["jpeg","jpg","png","gif","raw"]; //format img
+    let splitUrl = url.split("."); // ["https://i", "imgur", "com/qMUWuXV", "jpg"]
+    return(suffixes.includes(splitUrl[splitUrl.length-1]));
+  }
+
   useEffect(() => {
         (async () => {
         try{
             if(payload){
               const {data} = await axios.get("/users/userInfo");
-              if(data.imageUrl && data.imageUrl !== ""){
+              if(data.imageUrl && data.imageUrl !== "" && checkValidURLImage(data.imageUrl)){
                 setAvatarURL(data.imageUrl);
               }
+              else{
+                setAvatarURL(defaultAvatar);
+              }
+              
             }
         }
         catch(err){
