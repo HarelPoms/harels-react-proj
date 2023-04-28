@@ -18,6 +18,7 @@ import validateEditSchema, { validateEditFieldFromSchema } from "../validation/e
 import InputComponent from "../components/InputComponent";
 import CancelButtonComponent from "../components/CancelButtonComponent";
 import RefreshButtonComponent from "../components/RefreshButtonComponent";
+import useResponsiveQueries from "../hooks/useResponsiveQueries";
 
 const NewCardPage = () => {
     const startingInputVal = {title: "", subTitle: "", description: "", state:"", country:"", city: "", street: "", houseNumber: "", zipCode: "", phone: "", email:"", web: "", url: "", alt: "" };
@@ -25,6 +26,7 @@ const NewCardPage = () => {
     const [inputState, setInputState] = useState(startingInputVal);
     const [inputsErrorsState, setInputsErrorsState] = useState(startingInputErrVal);
     const navigate = useNavigate();
+    const querySize = useResponsiveQueries();
 
     const handleRefreshClick = (ev) => {
         setInputState(startingInputVal);
@@ -72,7 +74,7 @@ const NewCardPage = () => {
     }
 
     return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth={querySize}>
         <Box
             sx={{
             marginTop: 8,
