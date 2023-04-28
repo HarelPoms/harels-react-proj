@@ -12,6 +12,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+import CancelButtonComponent from "../components/CancelButtonComponent";
+import RefreshButtonComponent from "../components/RefreshButtonComponent";
 import ROUTES from "../routes/ROUTES";
 import validateLoginSchema from "../validation/loginValidation";
 import useLoggedIn from "../hooks/useLoggedIn";
@@ -19,11 +21,10 @@ import { validateLoginFieldFromSchema } from "../validation/loginValidation";
 import useResponsiveQueries from "../hooks/useResponsiveQueries";
 
 const LoginPage = () => {
-  const [inputState, setInputState] = useState({
-    email: "",
-    password: "",
-  });
-  const [inputsErrorsState, setInputsErrorsState] = useState({});
+  let startingInputVal = {email: "", password: ""};
+  let startingInputErrVal = {};
+  const [inputState, setInputState] = useState(startingInputVal);
+  const [inputsErrorsState, setInputsErrorsState] = useState(startingInputErrVal);
   const loggedIn = useLoggedIn();
   const navigate = useNavigate();
 
@@ -60,6 +61,10 @@ const LoginPage = () => {
     newErrorState[ev.target.id] = fieldValidationResult[ev.target.id];
     setInputsErrorsState(newErrorState);
   };
+  const handleRefreshClick = (ev) => {
+    setInputState(startingInputVal);
+    setInputsErrorsState(startingInputErrVal);
+  }
   return (
     <Container component="main" maxWidth={`${useResponsiveQueries()}`}>
       <Box
@@ -116,6 +121,12 @@ const LoginPage = () => {
                   ))}
                 </Alert>
               )}
+            </Grid>
+            <Grid item xs={6}>
+              <CancelButtonComponent />
+            </Grid>
+            <Grid item xs={6}>
+              <RefreshButtonComponent handleRefreshClick={handleRefreshClick}/>
             </Grid>
           </Grid>
           <Button
