@@ -5,13 +5,13 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { CircularProgress } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 import validateProfileSchema from "../validation/profileValidation";
 import { validateProfileFieldFromSchema } from "../validation/profileValidation";
@@ -120,7 +120,7 @@ const ProfilePage = () => {
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
+          <AccountCircleIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Profile Page
