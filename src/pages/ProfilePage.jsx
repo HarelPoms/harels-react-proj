@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { CircularProgress } from '@mui/material';
 
 import validateProfileSchema from "../validation/profileValidation";
 import { validateProfileFieldFromSchema } from "../validation/profileValidation";
@@ -37,8 +38,9 @@ const ProfilePage = () => {
     zipCode: "",
     biz: false
   };
-
   const startingInputErrVal = {};
+  const querySize = useResponsiveQueries();
+  const [loadCompleteState, setLoadCompleteState] = useState(false);
   const [inputState, setInputState] = useState(startingInputVal);
   const [inputsErrorsState, setInputsErrorsState] = useState(startingInputErrVal);
   const navigate = useNavigate();
@@ -93,6 +95,7 @@ const ProfilePage = () => {
             if(!newInputState.zipCode) { newInputState.zipCode = "";}
 
             setInputState(newInputState);
+            setLoadCompleteState(true);
         }
         catch(err){
             console.log(err);
@@ -102,8 +105,12 @@ const ProfilePage = () => {
         
     }, []);
 
+    if(!loadCompleteState){
+        return <CircularProgress />;
+    }
+
   return (
-    <Container component="main" maxWidth={`${useResponsiveQueries()}`}>
+    <Container component="main" maxWidth={querySize}>
       <Box
         sx={{
           marginTop: 8,
