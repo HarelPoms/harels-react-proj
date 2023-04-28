@@ -9,11 +9,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
+import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
 import ROUTES from "../routes/ROUTES";
 import validateEditSchema, {
   validateEditCardParamsSchema, validateEditFieldFromSchema
 } from "../validation/editValidation";
-import { CircularProgress } from "@mui/material";
 import atom from "../logo.svg";
 import { toast } from "react-toastify";
 import InputComponent from "../components/InputComponent";
@@ -102,7 +102,7 @@ const EditCardPage = () => {
   };
 
   if (!inputState) {
-    return <CircularProgress />;
+    return <LoadingAnimationComponent />;
   }
 
   return (
