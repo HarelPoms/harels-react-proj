@@ -12,6 +12,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { CircularProgress } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+// import ReactLoading from "react-loading";
 
 import validateProfileSchema from "../validation/profileValidation";
 import { validateProfileFieldFromSchema } from "../validation/profileValidation";
@@ -106,6 +107,7 @@ const ProfilePage = () => {
     }, []);
 
     if(!loadCompleteState){
+      // return <ReactLoading type={"bars"} color={"green"} height={200} width={200} />;
         return <CircularProgress />;
     }
 
