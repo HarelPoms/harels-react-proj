@@ -4,7 +4,7 @@ import RegisterPage from "../pages/RegisterPage";
 import ROUTES from "./ROUTES";
 import LoginPage from "../pages/LoginPage";
 import EditCardPage from "../pages/EditCardPage";
-import ProtectedRoute from "../components/ProtectedRoute";
+import LoggedInRoute from "../components/LoggedInRoute";
 import ProfilePage from "../pages/ProfilePage";
 import SuperProtectedRoute from "../components/SuperProtectedRoute";
 import LogoutPage from "../pages/LogoutPage";
@@ -30,9 +30,9 @@ const Router = () => {
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route
         path={ROUTES.LOGOUT}
-        element={<ProtectedRoute element={<LogoutPage />} />}
+        element={<LoggedInRoute element={<LogoutPage />} />}
       />
-      <Route path={ROUTES.MYCARDS} element={<ProtectedRoute element={<MyCardsPage />} />} />
+      <Route path={ROUTES.MYCARDS} element={<LoggedInRoute element={<MyCardsPage />} />} />
       <Route path="/new_card" element={
       <SuperProtectedRoute isAdmin={false} isBiz={true} isBizOrAdmin={true} element={<NewCardPage />} />
       } />
@@ -49,7 +49,7 @@ const Router = () => {
       />
       <Route
         path={ROUTES.PROFILE}
-        element={<ProtectedRoute element={<ProfilePage />} />}
+        element={<LoggedInRoute element={<ProfilePage />} />}
       />
       <Route path="/my_favs" element={
       <SuperProtectedRoute element={<FavCardsPage />} />
