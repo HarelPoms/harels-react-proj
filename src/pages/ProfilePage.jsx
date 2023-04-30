@@ -20,6 +20,7 @@ import InputComponent from "../components/InputComponent";
 import CancelButtonComponent from "../components/CancelButtonComponent";
 import RefreshButtonComponent from "../components/RefreshButtonComponent";
 import useResponsiveQueries from "../hooks/useResponsiveQueries";
+import useLoggedIn from "../hooks/useLoggedIn";
 
 const ProfilePage = () => {
   const startingInputVal = {
@@ -38,6 +39,7 @@ const ProfilePage = () => {
     zipCode: "",
     biz: false
   };
+  const loggedIn = useLoggedIn();
   const startingInputErrVal = {};
   const querySize = useResponsiveQueries();
   const [loadCompleteState, setLoadCompleteState] = useState(false);
@@ -51,7 +53,9 @@ const ProfilePage = () => {
       if (joiResponse) {
         return;
       }
-      await axios.put("users/userInfo", inputState);
+      let res = await axios.put("users/userInfo", inputState);
+      localStorage.setItem("token", res.data.token);
+      loggedIn();
       navigate(ROUTES.HOME);
     } catch (err) {
       console.log("error from axios", err.response.data);
