@@ -25,7 +25,7 @@ const AboutPage = () => {
                     </Typography>
                 </Grid>
                 <Grid item xs={6} sm={6} md={6} >
-                    <Img alt="Card With Actions for biz/admin" src={require("../assets/images/CardPreview1.PNG")} />
+                    <Img alt="Card With Actions for biz/admin" src={"/assets/images/CardPreview1.PNG"} />
                 </Grid>
                 {/* Row Two */}
                 <Grid item xs={5} sm={5} sx={{mt:5, ml:1}}>
@@ -34,7 +34,7 @@ const AboutPage = () => {
                     </Typography>
                 </Grid>
                 <Grid item xs={6} sm={6} md={6} >
-                    <Img alt="test" src={require("../assets/images/CardPreview2.PNG")} />
+                    <Img alt="test" src={"/assets/images/CardPreview2.PNG"} />
                 </Grid>
                 {/* Row Three */}
                 <Grid item xs={5} sm={5} sx={{ml:1}}>
@@ -43,7 +43,7 @@ const AboutPage = () => {
                     </Typography>
                 </Grid>
                 <Grid item xs={6} sm={6} md={6} >
-                    <Img alt="test" src={require("../assets/images/RightSideOfNavbar.PNG")} />
+                    <Img alt="test" src={"/assets/images/RightSideOfNavbar.PNG"} />
                 </Grid>
                 {/* Row Four */}
                 <Grid item xs={5} sm={5} sx={{ml:1}}>
@@ -52,7 +52,7 @@ const AboutPage = () => {
                     </Typography>
                 </Grid>
                 <Grid item xs={6} sm={6} md={6} >
-                    <Img alt="test" src={require("../assets/images/LeftSideOfNavbar.PNG")} />
+                    <Img alt="test" src={"/assets/images/LeftSideOfNavbar.PNG"} />
                 </Grid>
                 {/* Row Five */}
                 <Grid item xs={5} sm={5} sx={{ml:1}}>
@@ -62,7 +62,7 @@ const AboutPage = () => {
                     </Typography>
                 </Grid>
                 <Grid item xs={6} sm={6} md={6} >
-                    <Img alt="test" src={require("../assets/images/FooterShowcaseAllOptions.PNG")} />
+                    <Img alt="test" src={"/assets/images/FooterShowcaseAllOptions.PNG"} />
                 </Grid>
             </Grid>
         </Box>
