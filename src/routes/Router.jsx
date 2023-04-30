@@ -6,7 +6,7 @@ import LoginPage from "../pages/LoginPage";
 import EditCardPage from "../pages/EditCardPage";
 import LoggedInRoute from "../components/LoggedInRoute";
 import ProfilePage from "../pages/ProfilePage";
-import SuperProtectedRoute from "../components/SuperProtectedRoute";
+import PermissionsProtectedRoute from "../components/PermissionsProtectedRoute";
 import LogoutPage from "../pages/LogoutPage";
 import NewCardPage from "../pages/NewCardPage";
 import FullDetailsCardPage from "../pages/FullDetailsCardPage";
@@ -34,12 +34,12 @@ const Router = () => {
       />
       <Route path={ROUTES.MYCARDS} element={<LoggedInRoute element={<MyCardsPage />} />} />
       <Route path="/new_card" element={
-      <SuperProtectedRoute isAdmin={false} isBiz={true} isBizOrAdmin={true} element={<NewCardPage />} />
+      <PermissionsProtectedRoute isAdmin={false} isBiz={true} isBizOrAdmin={true} element={<NewCardPage />} />
       } />
       <Route
         path="/edit/:id"
         element={
-          <SuperProtectedRoute
+          <PermissionsProtectedRoute
             isAdmin={true}
             isBiz={true}
             isBizOrAdmin={true}
@@ -52,11 +52,11 @@ const Router = () => {
         element={<LoggedInRoute element={<ProfilePage />} />}
       />
       <Route path="/my_favs" element={
-      <SuperProtectedRoute element={<FavCardsPage />} />
+      <PermissionsProtectedRoute element={<FavCardsPage />} />
       } />
       <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
-      <Route path={ROUTES.SANDBOX} element={<SuperProtectedRoute isAdmin={true} isBiz={false} isBizOrAdmin={true} element={<SandboxPage />} />} > 
+      <Route path={ROUTES.SANDBOX} element={<PermissionsProtectedRoute isAdmin={true} isBiz={false} isBizOrAdmin={true} element={<SandboxPage />} />} > 
         <Route path="nr" element={<NestedRoutePage />} >
           <Route path="nestedpage1" element={<NestedPage1 />} />
           <Route path="nestedpage2" element={<NestedPage2 />} />

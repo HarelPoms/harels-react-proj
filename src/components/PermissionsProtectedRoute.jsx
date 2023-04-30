@@ -6,7 +6,7 @@ import ROUTES from "../routes/ROUTES";
 import { toast } from "react-toastify";
 
 //isBizOrAdmin - False = regular, True = Biz/Admin
-const SuperProtectedRoute = ({ element, isAdmin, isBiz, isBizOrAdmin }) => {
+const PermissionsProtectedRoute = ({ element, isAdmin, isBiz, isBizOrAdmin }) => {
   //* logic section
   const isLoggedIn = useSelector((bigState) => bigState.authSlice.isLoggedIn);
   const payload = useSelector((bigState) => bigState.authSlice.payload);
@@ -30,16 +30,16 @@ const SuperProtectedRoute = ({ element, isAdmin, isBiz, isBizOrAdmin }) => {
 };
 
 
-SuperProtectedRoute.propTypes = {
+PermissionsProtectedRoute.propTypes = {
     element: PropTypes.element.isRequired,
     isAdmin: PropTypes.bool.isRequired,
     isBiz:   PropTypes.bool.isRequired,
     isBizOrAdmin: PropTypes.bool.isRequired,
 };
 
-SuperProtectedRoute.defaultProps = {
+PermissionsProtectedRoute.defaultProps = {
     isAdmin: false,
     isBiz: false,
     isBizOrAdmin: false
 };
-export default SuperProtectedRoute;
+export default PermissionsProtectedRoute;
