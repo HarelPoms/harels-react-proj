@@ -19,11 +19,13 @@ import { toast } from "react-toastify";
 import InputComponent from "../components/InputComponent";
 import CancelButtonComponent from "../components/CancelButtonComponent";
 import RefreshButtonComponent from "../components/RefreshButtonComponent";
+import useResponsiveQueries from "../hooks/useResponsiveQueries";
 
 const EditCardPage = () => {
   const startingInputVal = null;
   const startingInputErrVal = {};
   const { id } = useParams();
+  const querySize = useResponsiveQueries();
   const [inputState, setInputState] = useState(startingInputVal);
   const [inputsErrorsState, setInputsErrorsState] = useState(startingInputErrVal);
   const navigate = useNavigate();
@@ -102,7 +104,7 @@ const EditCardPage = () => {
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth={querySize}>
       <Box
         sx={{
           marginTop: 8,
