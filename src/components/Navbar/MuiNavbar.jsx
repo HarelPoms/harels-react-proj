@@ -12,22 +12,18 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
-import Avatar from '@mui/material/Avatar';
 import axios from "axios";
 
 import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
 import { darkThemeActions } from "../../store/darkTheme";
 import NavbarMenuLinks from "./NavbarMenuLinks";
-import NavbarAuthNotAuthLinks from "./NavbarAuthNotAuthLinks";
-import useResponsiveQueries from "../../hooks/useResponsiveQueries";
 import NavProfileMenuComponent from "./NavProfileMenuComponent";
 
 const MuiNavbar = () => {
   const navigate = useNavigate();
   const defaultAvatar = "https://cdn-icons-png.flaticon.com/512/3135/3135715.png";
   const [isSearchUnfocused, setIsSearchUnfocused] = useState(true);
-  const viewportSize = useResponsiveQueries();
   const [avatarURL,setAvatarURL] = useState(defaultAvatar);
   const payload = useSelector((bigPie) => bigPie.authSlice.payload); 
   const isLoggedIn = useSelector(
@@ -115,7 +111,6 @@ const MuiNavbar = () => {
               isSearchUnfocused ?
               <LightModeIcon onClick={changeTheme}/> : ""}
               {isLoggedIn && isSearchUnfocused ? <NavProfileMenuComponent picSrc={avatarURL} /> : ""}
-              {isSearchUnfocused && viewportSize !== "xs" && viewportSize !== "sm" ? <NavbarAuthNotAuthLinks /> : ""}
             </Box>
             
           </Box>
