@@ -1,10 +1,11 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import CardDetailsComponent from "../components/CardDetailsComponent"
 
 import {validateEditCardParamsSchema} from "../validation/editValidation";
+import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
+
 
 const FullDetailsCardPage = () => {
     const [inputState, setInputState] = useState(null);
@@ -48,7 +49,7 @@ const FullDetailsCardPage = () => {
     }, [id]);
 
     if (!inputState) {
-        return <CircularProgress />;
+        return <LoadingAnimationComponent />;
     }
     return (
         <CardDetailsComponent {...inputState} />

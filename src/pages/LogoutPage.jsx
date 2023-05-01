@@ -1,6 +1,6 @@
-import { CircularProgress } from "@mui/material";
+import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
 
 const LogoutPage = () => {
-  return <CircularProgress />;
+  return <LoadingAnimationComponent />;
 };
 export default LogoutPage;

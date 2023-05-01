@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import CardComponent from "../components/CardComponent";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -7,9 +7,7 @@ import useQueryParams from "../hooks/useQueryParams";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Divider from '@mui/material/Divider';
-import Button from "@mui/material/Button";
-import AddIcon from '@mui/icons-material/Add';
-import ROUTES from "../routes/ROUTES";
+import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
 import {searchTrackerActions} from "../store/searchPageTracker";
 
 const FavCardsPage = () => {
@@ -99,9 +97,9 @@ const FavCardsPage = () => {
             toast.error("Failed to remove card from favorites");
         }
     } 
-    
+
     if (!cardsArr) {
-        return <CircularProgress />;
+        return <LoadingAnimationComponent />;
     }
     return (
         <Box>

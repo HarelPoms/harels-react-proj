@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -9,6 +9,7 @@ import useQueryParams from "../hooks/useQueryParams";
 import { useSelector, useDispatch } from "react-redux";
 import CardComponent from "../components/CardComponent";
 import {searchTrackerActions} from "../store/searchPageTracker";
+import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
 
 const HomePage = () => {
   const [originalCardsArr, setOriginalCardsArr] = useState(null);
@@ -97,7 +98,7 @@ const HomePage = () => {
   }
 
   if (!cardsArr) {
-    return <CircularProgress />;
+    return <LoadingAnimationComponent />;
   }
 
   return (

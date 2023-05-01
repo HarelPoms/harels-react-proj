@@ -4,7 +4,6 @@ import {
   ThemeProvider,
   createTheme,
   CssBaseline,
-  CircularProgress,
 } from "@mui/material";
 import Box from "@mui/material/Box";
 import BottomNavigation from '@mui/material/BottomNavigation';
@@ -23,6 +22,7 @@ import Router from "./routes/Router";
 import { useSelector } from "react-redux";
 import useLoggedIn from "./hooks/useLoggedIn";
 import ROUTES from "./routes/ROUTES";
+import LoadingAnimationComponent from "./components/LoadingAnimationComponent";
 
 const light = {
   palette: {
@@ -80,7 +80,7 @@ function App() {
         <header>
           <MuiNavbar />
         </header>
-        <main>{isLoading ? <CircularProgress /> : <Router />}</main>
+        <main>{isLoading ? <LoadingAnimationComponent /> : <Router />}</main>
         <footer>
           <Box>
             <BottomNavigation

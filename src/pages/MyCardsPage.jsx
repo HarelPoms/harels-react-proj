@@ -1,4 +1,4 @@
-import { Box, CircularProgress, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import CardComponent from "../components/CardComponent";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import AddIcon from '@mui/icons-material/Add';
 import ROUTES from "../routes/ROUTES";
 import {searchTrackerActions} from "../store/searchPageTracker";
+import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
 
 const MyCardsPage = () => {
     const [originalCardsArr, setOriginalCardsArr] = useState(null);
@@ -101,7 +102,7 @@ const MyCardsPage = () => {
     } 
 
     if (!cardsArr) {
-        return <CircularProgress />;
+        return <LoadingAnimationComponent />;
     }
     return (
         <Box>

@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import AddCardIcon from '@mui/icons-material/AddCard';
-import { CircularProgress } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -18,6 +17,7 @@ import validateEditSchema, { validateEditFieldFromSchema } from "../validation/e
 import InputComponent from "../components/InputComponent";
 import CancelButtonComponent from "../components/CancelButtonComponent";
 import RefreshButtonComponent from "../components/RefreshButtonComponent";
+import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
 import useResponsiveQueries from "../hooks/useResponsiveQueries";
 
 const NewCardPage = () => {
@@ -70,7 +70,7 @@ const NewCardPage = () => {
     }, [inputState]);
 
     if(!inputState){
-        return <CircularProgress />;
+        return <LoadingAnimationComponent />;
     }
 
     return (
