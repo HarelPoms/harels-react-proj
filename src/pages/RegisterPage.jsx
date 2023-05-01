@@ -44,7 +44,6 @@ const RegisterPage = () => {
   const handleBtnClick = async (ev) => {
     try {
       const joiResponse = validateRegisterSchema(inputState);
-      console.log(joiResponse);
       setInputsErrorsState(joiResponse);
       if (joiResponse) {
         return;

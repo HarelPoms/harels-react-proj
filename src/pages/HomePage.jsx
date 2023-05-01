@@ -28,7 +28,6 @@ const HomePage = () => {
       })
       .catch((err) => {
         console.log("err from axios", err);
-
         toast.error("Failed to retrieve buisiness cards data");
       });
   }, []);

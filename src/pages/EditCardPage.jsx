@@ -19,7 +19,6 @@ import { toast } from "react-toastify";
 import InputComponent from "../components/InputComponent";
 import CancelButtonComponent from "../components/CancelButtonComponent";
 import RefreshButtonComponent from "../components/RefreshButtonComponent";
-import { useSelector } from "react-redux";
 
 const EditCardPage = () => {
   const startingInputVal = null;
@@ -27,7 +26,6 @@ const EditCardPage = () => {
   const { id } = useParams();
   const [inputState, setInputState] = useState(startingInputVal);
   const [inputsErrorsState, setInputsErrorsState] = useState(startingInputErrVal);
-  const payload = useSelector((bigPie) => bigPie.authSlice.payload);
   const navigate = useNavigate();
   useEffect(() => {
     (async () => {
@@ -75,7 +73,6 @@ const EditCardPage = () => {
     try {
       const joiResponse = validateEditSchema(inputState);
       setInputsErrorsState(joiResponse);
-      //console.log(joiResponse);
       if (!joiResponse) {
         await axios.put("/cards/" + id, inputState);
         setTimeout(toast.success("Edit Saved Succesfully"),3000);
