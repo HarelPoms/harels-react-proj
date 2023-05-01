@@ -75,7 +75,6 @@ const MuiNavbar = () => {
               else{
                 setAvatarURL(defaultAvatar);
               }
-              
             }
         }
         catch(err){
