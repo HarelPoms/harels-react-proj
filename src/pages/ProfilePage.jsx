@@ -58,7 +58,7 @@ const ProfilePage = () => {
       loggedIn();
       navigate(ROUTES.HOME);
     } catch (err) {
-      console.log("error from axios", err.response.data);
+      toast.error("Error when updating profile");
     }
   };
   const handleInputChange = (ev) => {
@@ -102,7 +102,6 @@ const ProfilePage = () => {
             setLoadCompleteState(true);
         }
         catch(err){
-            console.log(err);
             toast.error("Failed to load Profile data");
         }
         })();

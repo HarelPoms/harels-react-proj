@@ -13,6 +13,7 @@ import Container from "@mui/material/Container";
 import { useNavigate } from "react-router-dom";
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import axios from "axios";
+import { toast } from "react-toastify";
 
 import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
@@ -78,7 +79,7 @@ const MuiNavbar = () => {
             }
         }
         catch(err){
-            console.log(err);
+            toast.error("Failed to get user to set avatar picture");
         }
         })();
         

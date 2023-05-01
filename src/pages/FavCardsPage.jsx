@@ -25,8 +25,6 @@ const FavCardsPage = () => {
             filterFunc(data);
         })
         .catch((err) => {
-            console.log("err from axios", err);
-
             toast.error("Failed to retrieve buisiness cards data");
         });
     }, []);
@@ -72,7 +70,7 @@ const FavCardsPage = () => {
             toast.error("Card Deletion Failed");
         }
         } catch (err) {
-        console.log("error when deleting", err.response.data);
+            toast.error("Error when deleting");
         }
     };
     const handleEditFromInitialCardsArr = (id) => {

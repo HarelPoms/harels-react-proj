@@ -17,6 +17,7 @@ import InputComponent from "../components/InputComponent";
 import CancelButtonComponent from "../components/CancelButtonComponent";
 import RefreshButtonComponent from "../components/RefreshButtonComponent";
 import useResponsiveQueries from "../hooks/useResponsiveQueries";
+import { toast } from "react-toastify";
 
 const RegisterPage = () => {
   const startingInputVal = {
@@ -51,8 +52,7 @@ const RegisterPage = () => {
       await axios.post("/users/register", inputState);
       navigate(ROUTES.LOGIN);
     } catch (err) {
-      console.log("error from axios", err.response.data);
-      console.log(err);
+        toast.error("Error trying to regsiter user");
     }
   };
   const handleInputChange = (ev) => {

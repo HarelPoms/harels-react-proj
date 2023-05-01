@@ -5,7 +5,7 @@ import CardDetailsComponent from "../components/CardDetailsComponent"
 
 import {validateEditCardParamsSchema} from "../validation/editValidation";
 import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
-
+import { toast } from "react-toastify";
 
 const FullDetailsCardPage = () => {
     const [inputState, setInputState] = useState(null);
@@ -43,7 +43,7 @@ const FullDetailsCardPage = () => {
                 delete newInputState.createdAt;
                 setInputState(newInputState);
             } catch (err) {
-                console.log("error from axios", err);
+                toast.error("Failed to load card data from server");
             }
             })();
     }, [id]);

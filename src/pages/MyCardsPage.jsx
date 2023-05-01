@@ -27,8 +27,6 @@ const MyCardsPage = () => {
             filterFunc(data);
         })
         .catch((err) => {
-            console.log("err from axios", err);
-
             toast.error("Failed to retrieve buisiness cards data");
         });
     }, []);
@@ -72,7 +70,7 @@ const MyCardsPage = () => {
             toast.error("Card Deletion Failed");
         }
         } catch (err) {
-        console.log("error when deleting", err.response.data);
+            toast.error("Card Deletion Server error");
         }
     };
     const handleEditFromInitialCardsArr = (id) => {

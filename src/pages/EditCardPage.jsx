@@ -65,7 +65,7 @@ const EditCardPage = () => {
         delete newInputState.createdAt;
         setInputState(newInputState);
       } catch (err) {
-        console.log("error from axios", err);
+        toast.error("Edited Card Data loading failed");
       }
     })();
   }, [id]);
@@ -79,8 +79,7 @@ const EditCardPage = () => {
         navigate(ROUTES.HOME);
       }
     } catch (err) {
-      console.log("err", err);
-      toast.error("Failed to Save Edit");
+      toast.error("Failed to Save Edit");    
     }
   };
 

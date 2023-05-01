@@ -48,7 +48,6 @@ const NewCardPage = () => {
             
             }
             catch(err){
-                console.log("Error while saving new card " + err);
                 toast.error("Failed to save new card");
             }
         })();
