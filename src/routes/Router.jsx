@@ -52,7 +52,7 @@ const Router = () => {
         element={<LoggedInRoute element={<ProfilePage />} />}
       />
       <Route path="/my_favs" element={
-      <PermissionsProtectedRoute element={<FavCardsPage />} />
+      <LoggedInRoute element={<FavCardsPage />} />
       } />
       <Route path={ROUTES.FULLCARDDETAILS} element={<FullDetailsCardPage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />

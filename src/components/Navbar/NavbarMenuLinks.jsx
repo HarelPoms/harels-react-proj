@@ -30,7 +30,7 @@ const adminPages = [
     {label: "Sandbox", url: ROUTES.SANDBOX}
 ]
 
-const nonBizAndAdminPages  = [{label: "Favorite Cards", url: ROUTES.MYFAVS}];
+const loggedInPages  = [{label: "Favorite Cards", url: ROUTES.MYFAVS}];
 
 const NavbarMenuLinks = ({isMobile}) => {
     const payload = useSelector((bigPie) => bigPie.authSlice.payload);
@@ -51,7 +51,7 @@ const NavbarMenuLinks = ({isMobile}) => {
         {payload && payload.isAdmin ? adminPages.map((page) => (
             <NavLinkComponent key={page.url} {...page} />
         )) : ""}
-        {isLoggedIn && !payload.isAdmin && !payload.biz ? nonBizAndAdminPages.map((page) => (
+        {isLoggedIn ? loggedInPages.map((page) => (
             <NavLinkComponent key={page.url} {...page} />
         )) : ""}
         </Fragment>

@@ -99,10 +99,7 @@ const FavCardsPage = () => {
             toast.error("Failed to remove card from favorites");
         }
     } 
-    const handleCreateClick = () => {
-        navigate(ROUTES.NEWCARD);
-    } 
-
+    
     if (!cardsArr) {
         return <CircularProgress />;
     }
@@ -128,16 +125,10 @@ const FavCardsPage = () => {
                 canEdit={payload && (payload.biz || payload.isAdmin) && item.user_id == payload._id }
                 canDelete={payload && (payload.isAdmin || (payload.biz && item.user_id == payload._id))}
                 canLike={payload && !payload.isAdmin && !payload.biz && !item.likes.includes(payload._id)}
-                userType={[payload.isAdmin, payload.biz]}
+                isOwnedBySelf={item.user_id === payload._id}
                 /> 
             </Grid>
             ))}
-            <Grid item xs={10}></Grid>
-            <Grid item xs={2} >
-                <Button variant="contained" color="success" sx={ { borderRadius: 18 } } onClick={handleCreateClick}>
-                    <AddIcon />
-                </Button>
-            </Grid>
         </Grid>
         </Box>
     );
