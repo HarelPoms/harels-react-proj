@@ -98,7 +98,8 @@ const HomePage = () => {
 
   return (
     <Box>
-      <Typography variant="h1"> Cards Page </Typography>
+      <Typography variant="h5">Welcome to our business card exchange platform! We're dedicated to helping professionals and entrepreneurs network and expand their businesses. Our user-friendly platform makes it easy to create and exchange digital business cards with other members, whether you're at a networking event or connecting with someone across the world. Join our community today and take your business to the next level!</Typography>
+      <Typography variant="h2"> Cards Page </Typography>
       <Typography variant="h3"> Here you can find business cards of all categories </Typography>
       <Divider> Cards on display </Divider>
       <Grid container spacing={2}>
