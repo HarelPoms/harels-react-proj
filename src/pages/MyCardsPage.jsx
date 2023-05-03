@@ -1,6 +1,6 @@
 import { Box, Grid } from "@mui/material";
 import CardComponent from "../components/CardComponent";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useQueryParams from "../hooks/useQueryParams";
@@ -9,19 +9,16 @@ import { toast } from "react-toastify";
 import Button from "@mui/material/Button";
 import AddIcon from '@mui/icons-material/Add';
 import ROUTES from "../routes/ROUTES";
-import {searchTrackerActions} from "../store/searchPageTracker";
 import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
 
 const MyCardsPage = () => {
     const [originalCardsArr, setOriginalCardsArr] = useState(null);
     const [cardsArr, setCardsArr] = useState(null);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     let qparams = useQueryParams();
     const payload = useSelector((bigPie) => bigPie.authSlice.payload);
 
     useEffect(() => {
-        dispatch(searchTrackerActions.myCardsSearch());
         axios.get("/cards/my-cards")
         .then(({ data }) => {
             filterFunc(data);

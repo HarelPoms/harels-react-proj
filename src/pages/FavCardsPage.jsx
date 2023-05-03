@@ -1,6 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import CardComponent from "../components/CardComponent";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useQueryParams from "../hooks/useQueryParams";
@@ -8,18 +8,15 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Divider from '@mui/material/Divider';
 import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
-import {searchTrackerActions} from "../store/searchPageTracker";
 
 const FavCardsPage = () => {
     const [originalCardsArr, setOriginalCardsArr] = useState(null);
     const [cardsArr, setCardsArr] = useState(null);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     let qparams = useQueryParams();
     const payload = useSelector((bigPie) => bigPie.authSlice.payload);
 
     useEffect(() => {
-        dispatch(searchTrackerActions.favoritesSearch());
         axios.get("/cards/get-my-fav-cards")
         .then(({ data }) => {
             filterFunc(data);
