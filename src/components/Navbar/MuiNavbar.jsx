@@ -19,7 +19,7 @@ import SearchPartial from "./SearchPartial";
 import ROUTES from "../../routes/ROUTES";
 import { darkThemeActions } from "../../store/darkTheme";
 import NavbarMenuLinks from "./NavbarMenuLinks";
-import NavbarAuthNotAuthLinks from "./NavbarAuthNotAuthLinks";
+import NavbarNotAuthLinks from "./NavbarNotAuthLinks";
 import useResponsiveQueries from "../../hooks/useResponsiveQueries";
 import NavProfileMenuComponent from "./NavProfileMenuComponent";
 
@@ -114,7 +114,7 @@ const MuiNavbar = () => {
               isSearchUnfocused ?
               <LightModeIcon onClick={changeTheme}/> : ""}
               {isLoggedIn && isSearchUnfocused ? <NavProfileMenuComponent picSrc={avatarURL} /> : ""}
-              {isSearchUnfocused && viewportSize !== "xs" && viewportSize !== "sm" ? <NavbarAuthNotAuthLinks /> : ""}
+              {isSearchUnfocused && viewportSize !== "xs" && viewportSize !== "sm" ? <NavbarNotAuthLinks /> : ""}
             </Box>
             
           </Box>

@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Fragment } from "react";
 
 import ROUTES from "../../routes/ROUTES";
-import NavbarAuthNotAuthLinks from "./NavbarAuthNotAuthLinks";
+import NavbarNotAuthLinks from "./NavbarNotAuthLinks";
 
 // access to all
 const pages = [
@@ -43,7 +43,7 @@ const NavbarMenuLinks = ({isMobile}) => {
         {pages.map((page) => (
             <NavLinkComponent key={page.url} {...page} />
         ))}
-        {isMobile ? <NavbarAuthNotAuthLinks /> : 
+        {isMobile ? <NavbarNotAuthLinks /> : 
         ""}
         {payload && payload.biz ? bizPages.map((page) => (
             <NavLinkComponent key={page.url} {...page} />
