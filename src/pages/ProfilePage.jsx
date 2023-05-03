@@ -50,6 +50,7 @@ const ProfilePage = () => {
     try {
       const joiResponse = validateProfileSchema(inputState);
       setInputsErrorsState(joiResponse);
+      console.log(joiResponse);
       if (joiResponse) {
         return;
       }

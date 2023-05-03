@@ -69,10 +69,10 @@ const CardComponent = ({
         <Typography>{description}</Typography>
       </CardContent>
       <CardActions>
-        {likePossible && !isOwnedBySelf ? 
+        {isLoggedIn && likePossible && !isOwnedBySelf ? 
         <Button variant="text" color="primary" onClick={handleLikeBtnClick}>
           <FavoriteIcon />
-        </Button> : !isOwnedBySelf ?
+        </Button> : isLoggedIn && !isOwnedBySelf ?
         <Button variant="text" color="primary" onClick={handleDislikeBtnClick}>
           <HeartBrokenIcon />
         </Button> : ""

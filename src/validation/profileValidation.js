@@ -12,7 +12,7 @@ const profileSchema = Joi.object({
     [1,1,1])),
     lastName: Joi.string().min(2).max(100).required().messages(generateMessages("Last Name", [2,100], 0,
     [1,1,1])),
-    phone: Joi.string().min(7).max(12).required().messages(generateMessages("Phone", [7,12], 0,
+    phone: Joi.string().min(9).max(14).required().messages(generateMessages("Phone", [9,14], 0,
     [1,1,1])),
     email: Joi.string().email({ tlds: { allow: false } }).required().messages({"string.email": "Email must be valid", "string.empty": "Email cannot be empty"}),
     imageUrl: Joi.string().min(6).max(1024).allow("").messages(generateMessages("Image URL", [6,1024], 0,
