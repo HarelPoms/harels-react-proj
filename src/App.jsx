@@ -90,7 +90,7 @@ function App() {
                 setValue(newValue);
               }}
             >
-              <BottomNavigationAction label="About" icon={<InfoIcon />} onClick={handleToAboutClick}/>
+            <BottomNavigationAction label="About" icon={<InfoIcon />} onClick={handleToAboutClick}/>
               {payload && <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} onClick={handleToFavsClick}/>}
               {payload && (payload.isAdmin || payload.biz) && <BottomNavigationAction label="My Cards" icon={<AttributionIcon />} onClick={handleToMyCardsClick}/>}
             </BottomNavigation>
