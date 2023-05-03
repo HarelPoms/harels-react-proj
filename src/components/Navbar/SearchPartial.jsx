@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { useSelector } from "react-redux";
+import ROUTES from "../../routes/ROUTES";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -51,12 +52,31 @@ const SearchPartial = ({handleSearchFocus}) => {
   const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
   const currPage = useSelector((bigPie) => bigPie.searchSlice.currentPage);
+  useEffect(() => {
+    searchLogic();
+  },[searchInput]);
+
+  const searchLogic = () => {
+    const currLoc = window.location.href;
+    if(currLoc.includes("my_cards")){
+      navigate(`${ROUTES.MYCARDS}?filter=${searchInput}`);
+    }
+    else if(currLoc.includes("my_favs")){
+      navigate(`${ROUTES.MYFAVS}?filter=${searchInput}`);
+    }
+    else{
+      navigate(`${ROUTES.HOME}?filter=${searchInput}`);
+    }
+  }
+
   const handleSearchChange = (e) => {
     setSearchInput(e.target.value);
-  };
+    //navigate(`${currPage}?filter=${searchInput}`);
+  }
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    navigate(`${currPage}?filter=${searchInput}`);
+    //navigate(`${currPage}?filter=${searchInput}`);
+    searchLogic();
   };
   const handleClickSearch =() =>{
     handleSearchFocus();
