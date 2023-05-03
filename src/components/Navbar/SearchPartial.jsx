@@ -49,9 +49,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const SearchPartial = ({handleSearchFocus}) => {
   const [searchInput, setSearchInput] = useState("");
+  const [firstInitStatePassed, setFirstInitStatePassed] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    searchLogic();
+    setFirstInitStatePassed(true);
+  }, []);
+  useEffect(() => {
+    if(firstInitStatePassed){
+      searchLogic();
+    }
   },[searchInput]);
 
   const searchLogic = () => {
