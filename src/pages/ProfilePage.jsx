@@ -50,7 +50,6 @@ const ProfilePage = () => {
     try {
       const joiResponse = validateProfileSchema(inputState);
       setInputsErrorsState(joiResponse);
-      console.log(joiResponse);
       if (joiResponse) {
         return;
       }
@@ -59,15 +58,24 @@ const ProfilePage = () => {
       loggedIn();
       navigate(ROUTES.HOME);
     } catch (err) {
-      toast.error("Error when updating profile");
+      if(err.response.status === 500){
+        toast.error("Error when updating profile, Cannot update profile due to email already being taken");
+      }
     }
   };
   const handleInputChange = (ev) => {
     let newInputState = JSON.parse(JSON.stringify(inputState));
+    let inputErrorsStateToValidate;
     newInputState[ev.target.id] = ev.target.value;
     setInputState(newInputState);
     let fieldValidationResult = validateProfileFieldFromSchema(ev.target.value, ev.target.id);
-    let newErrorState = JSON.parse(JSON.stringify(inputsErrorsState));
+    if(!inputsErrorsState){
+      inputErrorsStateToValidate = {};
+    }
+    else{
+      inputErrorsStateToValidate = inputsErrorsState;
+    }
+    let newErrorState = JSON.parse(JSON.stringify(inputErrorsStateToValidate));
     newErrorState[ev.target.id] = fieldValidationResult[ev.target.id];
     setInputsErrorsState(newErrorState);
   };
