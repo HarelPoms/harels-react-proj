@@ -49,13 +49,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const SearchPartial = ({handleSearchFocus}) => {
   const [searchInput, setSearchInput] = useState("");
-  const [firstInitStatePassed, setFirstInitStatePassed] = useState(false);
+  const [firstInitPassedState, setFirstInitPassedState] = useState(false);
   const navigate = useNavigate();
   useEffect(() => {
-    setFirstInitStatePassed(true);
+    setFirstInitPassedState(true);
   }, []);
   useEffect(() => {
-    if(firstInitStatePassed){
+    if(firstInitPassedState){
       searchLogic();
     }
   },[searchInput]);
