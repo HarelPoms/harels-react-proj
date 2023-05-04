@@ -69,7 +69,9 @@ const handleRandomClick = async (ev) => {
         let res = await axios.patch("cards/bizNumber/" + _id, {bizId: 101});
         console.log(res);
         setBizNumValueState(res.data.bizNumber);
-        setBizNumIdToPatchState({bizId: res.data.bizNumber});
+        let newInputState = JSON.parse(JSON.stringify(bizNumIdToPatchState));
+        newInputState.bizId = res.data.bizNumber;
+        setBizNumIdToPatchState(newInputState);
     }
     catch{
 
