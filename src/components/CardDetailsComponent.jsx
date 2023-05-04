@@ -75,7 +75,6 @@ const handleRandomClick = async (ev) => {
     catch{
         toast.error("Error occured changing business number randomly");
     }
-
 }
 return (
     <Card square raised>
