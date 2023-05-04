@@ -14,7 +14,7 @@ const registerSchema = Joi.object({
   [1,1,1])),
   phone: Joi.string().min(9).max(14).required().messages(generateMessages("Phone", [9,14], 0,
   [1,1,1])),
-  email: Joi.string().email({ tlds: { allow: false } }).required().messages({"string.email": "Email must be valid", "string.empty": "Email cannot be empty"}),
+  email: Joi.string().min(5).max(255).required().email({ tlds: { allow: false } }).messages(generateMessages("Email", [5,255], 0, [1,1,1,0,1])),
   password: Joi.string()
   .pattern(new RegExp("^(?=.*[A-Z])(?=.*[a-z]).{0,}$"))
   .min(6)

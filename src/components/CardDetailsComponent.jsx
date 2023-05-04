@@ -7,13 +7,75 @@ import {
     Typography,
     CardActions,
 } from "@mui/material";
+import Button from "@mui/material/Button";
+import { Fragment, useState } from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import axios from "axios";
+
+import InputComponent from "../components/InputComponent";
+import validateBizIdSchema from "../validation/bizIdValidation";
+import { validateBizIdFieldFromSchema } from "../validation/bizIdValidation";
 
 const CardDetailsComponent = ({
-    title, subTitle, description, phone, email, web, url, alt, state, country, city, street, houseNumber, zipCode
+    title, subTitle, description, phone, email, web, url, alt, state, country, city, street, houseNumber, zipCode, bizNumber, _id
 }) => {
+const [bizNumValueState, setBizNumValueState] = useState(bizNumber);
+const [bizNumIdToPatchState, setBizNumIdToPatchState] = useState({bizId: bizNumber});
+const [inputsErrorsState, setInputsErrorsState] = useState({});
+const isLoggedIn = useSelector((bigState) => bigState.authSlice.isLoggedIn);
+const payload = useSelector((bigPie) => bigPie.authSlice.payload);
 
+const handleBizNumberChange = (ev) => {
+    let inputErrorsStateToValidate;
+    let newInputState = JSON.parse(JSON.stringify(bizNumIdToPatchState));
+    newInputState[ev.target.id] = ev.target.value;
+    setBizNumIdToPatchState(newInputState);
+    let fieldValidationResult = validateBizIdFieldFromSchema(ev.target.value, ev.target.id);
+    if(!inputsErrorsState){
+        inputErrorsStateToValidate = {};
+    }
+    else{
+        inputErrorsStateToValidate = inputsErrorsState;
+    }
+    let newErrorState = JSON.parse(JSON.stringify(inputErrorsStateToValidate));
+    newErrorState[ev.target.id] = fieldValidationResult[ev.target.id];
+    setInputsErrorsState(newErrorState);
+}
 
+const handleChangeBizNumClick = async (ev) => {
+        try {
+        const joiResponse = validateBizIdSchema(bizNumIdToPatchState);
+        setInputsErrorsState(joiResponse);
+        if (joiResponse) {
+            return;
+        }
+        const { data : cards } = await axios.get("/cards/cards");
+        let filterObj = cards.filter((card)=>card.bizNumber == bizNumIdToPatchState.bizId)[0];
+        if(filterObj){
+            toast.error("This business number is already taken, choose another");
+            return;
+        }
+        await axios.patch("cards/bizNumber/" + _id, bizNumIdToPatchState);
+        setBizNumValueState(bizNumIdToPatchState.bizId);
+        } catch (err) {
+            toast.error("An error occured in the server");
+        }
+    };
+
+const handleRandomClick = async (ev) => {
+    try{
+        let res = await axios.patch("cards/bizNumber/" + _id, {bizId: 101});
+        console.log(res);
+        setBizNumValueState(res.data.bizNumber);
+        setBizNumIdToPatchState({bizId: res.data.bizNumber});
+    }
+    catch{
+
+    }
+
+}
 return (
     <Card square raised>
     <CardActionArea>
@@ -33,6 +95,25 @@ return (
         <Typography>City : {city}</Typography>
         <Typography>Street : {street}</Typography>
         <Typography>House Number : {houseNumber}</Typography>
+        <Typography sx={{ mb: 2 }}>Biz Number : {bizNumValueState}</Typography>
+        {isLoggedIn && payload.isAdmin ? <Fragment >
+            <InputComponent id="bizId" label="Business Number" inputState={bizNumIdToPatchState} inputsErrorsState={inputsErrorsState} handleInputChange={handleBizNumberChange} isRequired={true} />
+            <Button
+                variant="contained"
+                sx={{ mt: 1 }}
+                onClick={handleChangeBizNumClick}>
+                Update Biz Number Manually
+            </Button> 
+            <Button
+                variant="contained"
+                sx={{ mt: 1 }}
+                onClick={handleRandomClick}>
+                Update Biz Number Randomly
+            </Button> 
+        </Fragment>
+        : ""
+        }
+        
     </CardContent>
     <CardActions>
         
