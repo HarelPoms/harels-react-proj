@@ -37,9 +37,7 @@ const FullDetailsCardPage = () => {
                 delete newInputState.__v;
                 delete newInputState.image;
                 delete newInputState.likes;
-                //delete newInputState._id;
                 delete newInputState.user_id;
-                // delete newInputState.bizNumber;
                 delete newInputState.createdAt;
                 setInputState(newInputState);
             } catch (err) {
