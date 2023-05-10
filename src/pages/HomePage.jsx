@@ -9,6 +9,7 @@ import useQueryParams from "../hooks/useQueryParams";
 import { useSelector } from "react-redux";
 import CardComponent from "../components/CardComponent";
 import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
+import isImage from "../validation/isImgUrlValid";
 
 const HomePage = () => {
   const [originalCardsArr, setOriginalCardsArr] = useState(null);
@@ -110,7 +111,7 @@ const HomePage = () => {
               title={item.title}
               subTitle={item.subTitle}
               description={item.description}
-              img={item.image ? item.image.url : ""}
+              img={isImage(item.image.url) ? item.image.url : "/assets/images/placeholderCardImg.png"}
               onDelete={handleDeleteFromInitialCardsArr}
               onEdit={handleEditFromInitialCardsArr}
               onLike={handleLikeFromCards}

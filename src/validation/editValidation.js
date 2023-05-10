@@ -30,7 +30,7 @@ const editCardSchema = Joi.object({
   [1,1])),
   url: Joi.string().min(6).max(1024).allow("").messages(generateMessages("URL", [6,1024], 0,
   [1,1])),
-  alt: Joi.string().min(2).max(256).allow("").messages(generateMessages("ALT", [2,256], 0,
+  alt: Joi.string().min(6).max(256).allow("").messages(generateMessages("ALT", [6,256], 0,
   [1,1])),
 });
 

@@ -17,6 +17,7 @@ import axios from "axios";
 import InputComponent from "../components/InputComponent";
 import validateBizIdSchema from "../validation/bizIdValidation";
 import { validateBizIdFieldFromSchema } from "../validation/bizIdValidation";
+import isImage from "../validation/isImgUrlValid";
 
 const CardDetailsComponent = ({
     title, subTitle, description, phone, email, web, url, alt, state, country, city, street, houseNumber, zipCode, bizNumber, _id
@@ -80,7 +81,7 @@ const handleRandomClick = async (ev) => {
 return (
     <Card square raised>
     <CardActionArea>
-        <CardMedia component="img" image={url} alt={alt} />
+        <CardMedia component="img" image={isImage(url) ? url : "/assets/images/placeholderCardImg.png"} alt={alt} />
     </CardActionArea>
     <CardHeader title={title} subheader={subTitle}></CardHeader>
     <CardContent>

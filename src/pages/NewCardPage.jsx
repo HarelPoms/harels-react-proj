@@ -9,7 +9,7 @@ import AddCardIcon from '@mui/icons-material/AddCard';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import atom from "../logo.svg";
+import isImage from "../validation/isImgUrlValid";
 
 import ROUTES from "../routes/ROUTES";
 import validateEditSchema, { validateEditFieldFromSchema } from "../validation/editValidation";
@@ -97,7 +97,7 @@ const NewCardPage = () => {
                 maxWidth: { xs: 350, md: 250 },
             }}
             alt={inputState.alt ? inputState.alt : ""}
-            src={inputState.url ? inputState.url : atom}
+            src={isImage(inputState.url) ? inputState.url : "/assets/images/placeholderCardImg.png"}
             />
             <Box component="div" noValidate sx={{ mt: 3 }}>
             <Grid container spacing={2}>
