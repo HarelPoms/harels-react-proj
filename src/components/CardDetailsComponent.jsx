@@ -67,15 +67,16 @@ const handleChangeBizNumClick = async (ev) => {
 const handleRandomClick = async (ev) => {
     try{
         let res = await axios.patch("cards/bizNumber/" + _id, {bizId: 101});
-        setBizNumValueState(res.data.bizNumber);
+        setBizNumValueState(res.data.bizId);
         let newInputState = JSON.parse(JSON.stringify(bizNumIdToPatchState));
-        newInputState.bizId = res.data.bizNumber;
+        newInputState.bizId = res.data.bizId;
         setBizNumIdToPatchState(newInputState);
     }
     catch{
         toast.error("Error occured changing business number randomly");
     }
 }
+
 return (
     <Card square raised>
     <CardActionArea>
