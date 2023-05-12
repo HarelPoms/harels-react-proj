@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import AddIcon from '@mui/icons-material/Add';
 import ROUTES from "../routes/ROUTES";
 import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
+import isImage from "../validation/isImgUrlValid";
 
 const MyCardsPage = () => {
     const [originalCardsArr, setOriginalCardsArr] = useState(null);
@@ -108,7 +109,7 @@ const MyCardsPage = () => {
                 title={item.title}
                 subTitle={item.subTitle}
                 description={item.description}
-                img={item.image ? item.image.url : ""}
+                img={item.image && isImage(item.image.url) ? item.image.url : "/assets/images/placeholderCardImg.png"}
                 onDelete={handleDeleteFromInitialCardsArr}
                 onEdit={handleEditFromInitialCardsArr}
                 onLike={handleLikeFromCards}

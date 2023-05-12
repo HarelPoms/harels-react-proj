@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import Divider from '@mui/material/Divider';
 import LoadingAnimationComponent from "../components/LoadingAnimationComponent";
+import isImage from "../validation/isImgUrlValid";
 
 const FavCardsPage = () => {
     const [originalCardsArr, setOriginalCardsArr] = useState(null);
@@ -110,7 +111,7 @@ const FavCardsPage = () => {
                 title={item.title}
                 subTitle={item.subTitle}
                 description={item.description}
-                img={item.image ? item.image.url : ""}
+                img={item.image && isImage(item.image.url) ? item.image.url : "/assets/images/placeholderCardImg.png"}
                 onDelete={handleDeleteFromInitialCardsArr}
                 onEdit={handleEditFromInitialCardsArr}
                 onLike={handleLikeFromCards}
