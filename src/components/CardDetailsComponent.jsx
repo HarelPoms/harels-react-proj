@@ -138,7 +138,7 @@ CardDetailsComponent.propTypes = {
     city: PropTypes.string.isRequired,
     street: PropTypes.string.isRequired,
     houseNumber: PropTypes.string.isRequired,
-    zipCode: PropTypes.number.isRequired
+    // zipCode: PropTypes.number.isRequired
 };
 
 CardDetailsComponent.defaultProps = {
