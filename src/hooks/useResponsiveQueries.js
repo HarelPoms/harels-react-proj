@@ -5,19 +5,22 @@ const useResponsiveQueries = () => {
     const lgMatch = useMediaQuery('(min-width:1200px)');
     const mdMatch = useMediaQuery('(min-width:900px)');
     const smMatch = useMediaQuery('(min-width:600px)');
+    const xsMatch = useMediaQuery('(min-width:0px)');
     if(xlMatch){
-        return "xl";
+        return 'auto';
     }
     if(lgMatch){
-        return "lg";
+        return 'xl';
     }
     if(mdMatch){
-        return "md";
+        return 'lg';
     }
     if(smMatch){
-        return "sm";
+        return 'md';
     }
-    return "xs";
+    if(xsMatch){
+        return 'sm';
+    }
 };
 
 export default useResponsiveQueries;
